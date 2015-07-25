@@ -16,18 +16,14 @@ class App < Sinatra::Base
 	end
 end
 
-
 get '/' do
+	@client = Client::connect
   	if params[:msg]
 	  	message = Message.new(params[:msg], params[:user]).parse
 	  	{:msg => params[:msg]}.to_json
 	  	Response.send(message)
   	end  	
 end
-get '/connect' do
-  	Client::connect
-end
-
 
 class Response
 	def self.send(command = false)
