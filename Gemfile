@@ -6,4 +6,6 @@ gem "json"
 
 group :development do
 	gem "rerun"
+	gem 'capistrano'
+	gem 'rvm-capistrano'
 end

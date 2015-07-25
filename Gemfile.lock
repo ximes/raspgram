@@ -2,9 +2,16 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.6.4)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     ffi (1.9.6)
+    highline (1.6.21)
     hitimes (1.2.2)
     json (1.8.1)
     listen (2.8.0)
@@ -12,6 +19,13 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     multi_json (1.10.1)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.1)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -22,6 +36,8 @@ GEM
       ffi (>= 0.5.0)
     rerun (0.10.0)
       listen (~> 2.7, >= 2.7.3)
+    rvm-capistrano (1.5.5)
+      capistrano (~> 2.15.4)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -41,7 +57,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  capistrano
   json
   rerun
+  rvm-capistrano
   sinatra
   sinatra-contrib
