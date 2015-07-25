@@ -11,6 +11,12 @@ enable :sessions
 set :root, APP_PATH
 
 class App < Sinatra::Base
+	configure do
+	    #enable :logging
+	    #file = File.new("#{settings.root}/log/#{settings.environment}.log", 'a+')
+	    #file.sync = true
+	    #use Rack::CommonLogger, file
+	end
 	configure :development do
 		register Sinatra::Reloader
 	end
@@ -18,10 +24,12 @@ end
 
 get '/' do
 	@client = Client::connect
+	#logger.info params
   	if params[:msg]
 	  	message = Message.new(params[:msg], params[:user]).parse
 	  	{:msg => params[:msg]}.to_json
 	  	Response.send(message)
+	  	#logger.info message
   	end  	
 end
 
