@@ -22,6 +22,12 @@ class App < Sinatra::Base
 	end
 end
 
+configure do
+	(YAML.load_file('config/raspgram.yml')['config']).merge({'daemon' => "bin/telegram-cli", 'sock' => 'tg.sock'}).each do |key, config|
+		set key.to_s, config
+	end 
+end
+
 get '/' do
 	@client = Client::connect
 	#logger.info params
@@ -30,7 +36,9 @@ get '/' do
 	  	{:msg => params[:msg]}.to_json
 	  	Response.send(message)
 	  	#logger.info message
-  	end  	
+  	end
+  	@admin_email = settings.admin_email
+  	erb :index
 end
 
 class Response
