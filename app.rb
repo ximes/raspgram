@@ -81,14 +81,14 @@ class Message
 
 	def turnOffScreen
 		#activate screensaver
-		sendCommandToDisplay "xscreensaver-command -activate"
+		#sendCommandToDisplay "xscreensaver-command -activate"
 		#or manually
 		#sendCommand "echo 1 | sudo tee /sys/class/backlight/*/bl_power"
 	end
 
 	def turnOnScreen
 		#activate screensaver
-		sendCommandToDisplay "xscreensaver-command -deactivate"
+		#sendCommandToDisplay "xscreensaver-command -deactivate"
 		#or manually
 		#sendCommand "echo 0 | sudo tee /sys/class/backlight/*/bl_power"
 	end
@@ -104,18 +104,18 @@ class Message
 	end	
 
 	def sendCommandToDisplay(command)
-		system("DISPLAY=:0 #{command}")
+		#system("DISPLAY=:0 #{command}")
 	end	
 
 	def send_photo
 		send_text "try this one:"
-		img = "#{APP_PATH}/statuses/shot_#{Time.now.to_i}.png"
+		img = "./statuses/shot_#{Time.now.to_i}.png"
 		sendCommand("raspistill -v -w 500 -h 350 -q 75 -o #{img}")
 		Response.send "send_photo user##{@from_user} '#{img}'"
 		
-		turnOnScreen		
-		sendCommandToDisplay("midori #{img} &")
-		sendCommand("midori -e fullscreen")
+		#turnOnScreen		
+		#sendCommandToDisplay("midori #{img} &")
+		#sendCommand("midori -e fullscreen")
 
 		send_text "do you like it?"
 	end

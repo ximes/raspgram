@@ -27,7 +27,7 @@ role :app, domain                          # This may be the same as your `Web` 
 set :deploy_to, applicationdir
 set :deploy_via, :export
 
-set :shared_children, fetch(:shared_children) + %w{lib/tg log config/raspgram.yml}
+set :shared_children, fetch(:shared_children) + %w{statuses lib/tg log config/raspgram.yml}
 
 #set :linked_files, fetch(:linked_files) + %w{config/raspgram.yml}
 
