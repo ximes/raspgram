@@ -76,7 +76,7 @@ function on_msg_receive (msg)
   end
 
   http.request{ 
-    url = config["host"].."/?msg="..msg.text.."&user="..msg.from.id, 
+    url = config["host"].."/msg?msg="..msg.text.."&user="..msg.from.id, 
     sink = ltn12.sink.file(io.stdout)
   }
 

@@ -29,6 +29,11 @@ configure do
 end
 
 get '/' do
+  	@admin_email = settings.admin_email
+  	erb :index
+end
+
+get '/msg' do
 	@client = Client::connect
 	#logger.info params
   	if params[:msg]
@@ -37,8 +42,6 @@ get '/' do
 	  	Response.send(message)
 	  	#logger.info message
   	end
-  	@admin_email = settings.admin_email
-  	erb :index
 end
 
 class Response
