@@ -9,6 +9,7 @@ and compile it in a folder of your choice (e.g. /www/raspgram/shared/tg/)
 	make
 
 [TODO: list of other requirements and libraries]
+ # Be sure to have rake installed for the autoconnection tasks (Sinatra)
 
 To manual launch the server, use:
 screen -dm -S tgram [path of the telegram-cli lib relative to app] -s ./queue.lua -k [path to the default public key]"

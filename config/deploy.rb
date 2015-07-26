@@ -46,10 +46,12 @@ default_run_options[:pty] = true
 namespace :deploy do
   desc "Not starting as we're running passenger."
   task :start do
+    run "rake connect"
   end
 
   task :restart do
     run "touch #{current_path}/tmp/restart.txt"
+    run "rake connect"
   end
 
   desc "Override deploy:cold to NOT run migrations - there's no database"
