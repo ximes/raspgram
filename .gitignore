@@ -3,4 +3,5 @@
 .ruby-version
 lib/tg
 config/tg.pub
+config/raspgram.yml
 tmp/*
