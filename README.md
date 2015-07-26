@@ -8,6 +8,10 @@ and compile it in a folder of your choice (e.g. /www/raspgram/shared/tg/)
 	./configure [--disable-python --disable-json]
 	make
 
+Give it a first run with:
+[path of the telegram-cli lib]/bin/telegram-cli  -s [path of the telegram-cli app]/queue.lua -k [path of the telegram-cli lib]
+to register and confirm your number.
+
 Capistrano should take of reloading/connectin the client after deploy. For running the server manually, run:
 rake connect
 in the app's folder. Or add a startup script like the following:
@@ -48,7 +52,7 @@ sudo chmod 755 /etc/init.d/raspgram
  # Be sure to have rake installed for the autoconnection tasks (Sinatra)
 
 To manual launch the server, use:
-screen -dm -S tgram [path of the telegram-cli lib relative to app] -s ./queue.lua -k [path to the default public key]"
+screen -dm -S tgram [path of the telegram-cli lib relative to app] -s ./queue.lua -k [path to the default public key]
 
 To see the status (and send other commands), use:
 screen -r tgram -p 0 -X stuff "[your command]] $(printf \\\r)"
