@@ -33,7 +33,7 @@ get '/' do
   	erb :index
 end
 
-get '/msg' do
+get '/api/' do
 	@client = Client::connect
 	#logger.info params
   	if params[:msg]
@@ -134,7 +134,7 @@ class Message
 	end
 
 	def parse
-		Response.send "mark_read user##{@from_user}"
+		#Response.send "mark_read user##{@from_user} "
 		case @text
 			when /^status$/i
 			  send_status

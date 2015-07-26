@@ -74,11 +74,12 @@ function on_msg_receive (msg)
   if msg.out then
     return
   end
-
-  http.request{ 
-    url = config["host"].."/msg?msg="..msg.text.."&user="..msg.from.id, 
+  -- vardump (config["host"].."/api/?msg="..msg.text.."&user="..msg.from.id)
+  response = http.request{ 
+    url = config["host"].."/api/?msg="..msg.text.."&user="..msg.from.id, 
     sink = ltn12.sink.file(io.stdout)
   }
+  -- vardump (response)
 
   return  
 
