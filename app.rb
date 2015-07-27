@@ -72,6 +72,7 @@ class Message
 		sleep(5)
 		send_text "Status (ask me how I am)"
 		send_text "Dice (roll a 1d6)"
+		send_text "Space (available space)"
 		send_text "Pic (ask me to take a picture)"
 		send_text "Turn screen off (ask me to disable screen output)"
 		send_text "Turn screen on (ask me to enable screen output)"
@@ -80,6 +81,11 @@ class Message
 	
 	def send_dice
 		send_text "#{1+rand(6)}"
+	end
+
+	def disk_space
+		space = %x( df -Ph $PWD | tail -1 | awk '{ print $3}' )
+		send_text "#{space}"
 	end
 
 	def turnOffScreen
@@ -113,7 +119,7 @@ class Message
 	def send_photo
 		send_text "try this one:"
 		img = "./statuses/shot_#{Time.now.to_i}.png"
-		sendCommand("raspistill -v -w 500 -h 350 -q 75 -o #{img}")
+		sendCommand("raspistill -v -w 1200 -h 800 -q 75 -o #{img}")
 		Response.send "send_photo user##{@from_user} '#{img}'"
 		
 		#turnOnScreen		
@@ -138,6 +144,8 @@ class Message
 		case @text
 			when /^status$/i
 			  send_status
+			when /^space$/i
+			  disk_space
 			when /^tasks$/i
 			  find_tasks
 			when /^help$/i
