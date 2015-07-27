@@ -1,0 +1,5 @@
+config:
+  lib_path: 'lib/tg/' # path to the telegram-cli
+  key:  'lib/tg/tg-server.pub' #TODO, opt path to the public key used 
+  host: 'http://www.raspgram.dev' # host to connect with 
+  admin_email: 'stefano.franzin@gmail.com' # admin email
