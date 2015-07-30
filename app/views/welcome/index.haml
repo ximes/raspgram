@@ -1,0 +1,14 @@
+.cover-container
+  .masterhead.clearfix
+    .inner
+      %nav
+  .inner.cover
+    %h1.cover-heading Welcome to RaspGram.
+    .logo
+      %img{src:"images/house_home.png", alt:"Raspgram" }
+    %p.lead Providing simple home automation via Telegram.
+  .mastfoot
+    .inner
+      %p
+        %a{href:"mailto:#{@admin_email}"} 
+          = @admin_email
