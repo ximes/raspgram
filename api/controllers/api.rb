@@ -15,9 +15,14 @@ Raspgram::Api.controllers :api do
     response = {}
     
     if msg and user_id
-    	Message.new()
-    	Response.new()
-    	response.store(:received, true)
+    	message = Message.new(:content => msg, :to => user_id)
+
+        response.store(:received, true)
+
+        if message and message.parse?
+            response.store(:response, message.parse!)
+        end
+    	
 	end
 
     response.to_json

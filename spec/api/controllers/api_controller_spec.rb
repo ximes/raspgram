@@ -42,7 +42,7 @@ RSpec.describe "/api" do
       expect(last_response).to be_ok
     end
 
-    it "should return a response" do
+    it "should return a json response" do
       get_api with_valid_params
       expect(last_response.body).not_to eq("{}")
     end
@@ -56,10 +56,24 @@ RSpec.describe "/api" do
       Message.expects(:new).at_least_once
       get_api with_valid_params
     end
-    it "should call a response" do
-      Response.expects(:new).at_least_once
-      get_api with_valid_params
+
+    describe "with a valid message" do 
+      it "should get a valid response" do
+        Message.any_instance.stubs(:parse?).returns(true)
+        Response.expects(:new).at_least_once
+        get_api with_valid_params
+        expect(JSON.parse(last_response.body, symbolize_names: true).keys).to contain_exactly(:received, :response)
+      end      
     end
+    describe "without a valid message" do 
+      it "shouldn't get a valid response" do
+        Message.any_instance.stubs(:parse?).returns(false)
+        Response.expects(:new).never
+        get_api with_valid_params
+        expect(JSON.parse(last_response.body, symbolize_names: true).keys).to contain_exactly(:received)
+      end      
+    end
+
   end
 
   def get_api(params = nil)
