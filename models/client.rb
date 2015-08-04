@@ -1,9 +1,8 @@
 # encoding: utf-8
 require 'yaml'
-require_relative 'api'
 require 'io/console'
 
-class Client < API
+class Client
   attr_reader :config
   @connected = false
   
