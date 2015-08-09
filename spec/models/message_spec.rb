@@ -18,33 +18,52 @@ RSpec.describe Message do
 			message = Message.new(content: "Lorem ipsum")
 			expect(message).not_to be_valid
 		end
-		it "should have a user to" do
-			message = Message.new valid_attributes
-			expect(message.to).to eq(valid_attributes[:to])
+		before do
+			@message = Message.new valid_attributes
 		end
 		it "should have a user to" do
-			message = Message.new valid_attributes
-			expect(message.content).to eq(valid_attributes[:content])
+			expect(@message.to).to eq(valid_attributes[:to])
+		end
+		it "should have a content" do
+			expect(@message.content).to eq(valid_attributes[:content])
+		end
+		it "could have errors" do
+			expect(@message).to respond_to(:has_errors?)
+		end
+		it "could have responses" do
+			expect(@message).to respond_to(:has_valid_response?)
+		end
+		it "could respond to messages" do
+			expect(@message).to respond_to(:respond)
 		end
 	end
 	context "A message" do
-		before :each do 
-			@message = Message.new valid_attributes
-		end
 		describe "with valid content" do
-			before do
-				@message.stubs(:parse?).returns(true)
+			before do 
+				@response = Response.new "command"
+				@message = Message.new valid_attributes.merge({ response: @response })
 			end
 			it "should return a response" do
-				expect(@message.parse!).to be_a Response
+				@response.expects(:execute!).at_least_once
+				@message.respond
+				expect(@message.response).to be_a Response
 			end
+			it "should return no errors" do
+				expect(@message.errors).to be_empty
+			end
+
 		end
 		describe "with no valid content" do
 			before do
-				@message.stubs(:parse?).returns(false)
+				@message = Message.new valid_attributes
 			end
 			it "shouldn't return a response" do
-				expect(@message.parse!).to eq(nil)
+				expect(@message.response).to be_nil
+				Response.expects(:execute!).never
+				expect(@message.has_valid_response?).to be_falsy
+			end
+			it "should have errors" do
+				expect(@message.errors.size).to be > 0
 			end
 		end
 

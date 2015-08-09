@@ -8,19 +8,20 @@ Raspgram::Api.controllers :api do
     if params[:msg]
     	msg = params[:msg]
     end
-    if params[:userid]
-    	user_id = params[:userid]
+    if params[:user]
+    	user = params[:user]
     end
     
     response = {}
     
-    if msg and user_id
-    	message = Message.new(:content => msg, :to => user_id)
+    if msg and user
+    	message = Message.new(:content => msg, :to => user)
 
         response.store(:received, true)
 
-        if message and message.parse?
-            response.store(:response, message.parse!)
+        if message and message.has_valid_response?
+            message.respond
+            response.store(:response, message.response)
         end
     	
 	end
