@@ -27,6 +27,8 @@ end
 
 # Test requirements
 group :test do
+	gem 'factory_girl'
+	gem 'database_cleaner'
 	gem 'rspec'
 	gem 'mocha'
 	gem 'rspec-html-matchers'

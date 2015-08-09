@@ -25,7 +25,10 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    database_cleaner (1.4.1)
     diff-lcs (1.2.5)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
     ffi (1.9.6)
     haml (4.0.6)
       tilt
@@ -525,6 +528,8 @@ DEPENDENCIES
   activerecord (>= 3.1)
   bcrypt
   capistrano
+  database_cleaner
+  factory_girl
   haml
   mocha
   padrino (= 0.12.5)

@@ -59,7 +59,7 @@ RSpec.describe "/api" do
 
     describe "with a valid message" do 
       before do
-        @response = Response.new "command"
+        @response = build(:valid_response)
         Response.any_instance.stubs(:execute!).at_least_once
         Message.any_instance.stubs(:response).returns(@response)
       end
