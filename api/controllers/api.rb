@@ -3,8 +3,8 @@ Raspgram::Api.controllers :api do
   get :index, :map => '/', :provides => [:js] do
     content_type :json
 
-    @client = Client.new
-
+    @client = Client.connect
+    
     if params[:msg]
     	msg = params[:msg]
     end

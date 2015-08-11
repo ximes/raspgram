@@ -48,7 +48,7 @@ RSpec.describe "/api" do
     end
 
     it "should setup a connection" do
-      Client.expects(:new)
+      Client.expects(:connect)
       get_api with_valid_params
     end
 
