@@ -3,7 +3,7 @@ Raspgram::Api.controllers :api do
   get :index, :map => '/', :provides => [:js] do
     content_type :json
 
-    @client = Client.connect
+    @client = Client::connect
     
     if params[:msg]
     	msg = params[:msg]
@@ -15,7 +15,7 @@ Raspgram::Api.controllers :api do
     response = {}
     
     if msg and user
-    	message = Message.new(:content => msg, :to => user)
+    	message = Message.new(:content => msg, :from => user)
 
         response.store(:received, true)
 

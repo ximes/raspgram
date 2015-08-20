@@ -2,11 +2,13 @@ class Message
 
 	include ActiveModel::Validations
 
-	attr_accessor :content, :from, :to
+	attr_accessor :content, :from
 	attr_reader :response
 
+	include Parser
+
 	validates :content, presence: true
-	validates :to, presence: true
+	validates :from, presence: true
 
 	def initialize(args)
 	   	args.each do |k,v|
@@ -16,20 +18,24 @@ class Message
 	end
 
 	def has_valid_response?
-		response.present? && response.valid?
+		@response.present? && @response.valid?
 	end
 	def has_errors?
 		errors.any?
 	end
 	def respond
-		response.execute! if has_valid_response?
+		if has_valid_response?
+			@response.execute! 
+		else
+			raise "not valid response"
+		end
 	end
 
 	private
 
 	def parse!
-		command = "command"
-		response = Response.new command
+		command = Parser::Input.parse(content, from)
+		@response = Response.new command
 
 		if has_valid_response?
 			true

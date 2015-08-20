@@ -31,7 +31,8 @@ RSpec.describe "/api" do
 
   context "when accessing with parameters" do
 
-    with_valid_params = {:msg => "Lorem ipsum", :user => "12345678"}
+    with_valid_params = {:msg => "system status", :user => "12345678"}
+    with_not_valid_params = {:msg => "invalid", :user => "12345678"}
     
     before :each do
       load_settings     
@@ -74,7 +75,7 @@ RSpec.describe "/api" do
         @response = nil
       end
       it "shouldn't get a valid response" do
-        get_api with_valid_params
+        get_api with_not_valid_params
         expect(JSON.parse(last_response.body, symbolize_names: true).keys).to contain_exactly(:received)
       end      
     end

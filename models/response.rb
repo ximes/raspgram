@@ -15,6 +15,6 @@ class Response
 	end
 
 	def valid?
-		!@command.blank?
+		!@command.nil?
 	end
 end

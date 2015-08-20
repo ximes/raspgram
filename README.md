@@ -9,7 +9,7 @@ and compile it in a folder of your choice (e.g. /www/raspgram/shared/tg/)
 	make
 
 Give it a first run with:
-[path of the telegram-cli lib]/bin/telegram-cli  -s [path of the telegram-cli app]/queue.lua -k [path of the telegram-cli lib]
+[path of the telegram-cli lib]/bin/telegram-cli  -s [path of the telegram-cli app]/queue.lua -k [path of the telegram-cli key]
 to register and confirm your number.
 
 Capistrano should take of reloading/connectin the client after deploy. For running the server manually, run:
