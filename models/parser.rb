@@ -25,6 +25,12 @@ module Parser
 			end
 		   	nil
 		end
+		def self.rule_list(input, from)
+			parser = self.new(input, from)
+			rules = parser.matchers.map do |match|
+				match.word
+			end
+		end
 		private
 		def initialize(input, from)
 			@matchers = []

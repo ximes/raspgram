@@ -1,7 +1,10 @@
 module Parser
 	class Dice < Matcher
+		def initialize
+			@word = "dice"
+		end
 		def parse(input, from)
-			if /^dice/i.match input
+			if /^#{@word}/i.match input
 				@input = input
 				@from = from
 			end

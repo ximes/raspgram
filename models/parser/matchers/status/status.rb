@@ -1,7 +1,10 @@
 module Parser
 	class Status < Matcher
+		def initialize
+			@word = "system status"
+		end
 		def parse(input, from)
-			if /^system status/i.match input
+			if /^#{@word}/i.match input
 				@input = input
 				@from = from
 			end

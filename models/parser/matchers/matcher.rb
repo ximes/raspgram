@@ -1,6 +1,7 @@
 module Parser
 	class Matcher
 		attr :input, :from
+		attr_accessor :word
 		def parse(input, from)
 			raise "You must redefine this method!"
 		end

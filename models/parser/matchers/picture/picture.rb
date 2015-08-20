@@ -1,7 +1,10 @@
 module Parser
 	class Picture < Matcher
+		def initialize
+			@word = "system pic"
+		end
 		def parse(input, from)
-			if /^system pic/i.match input
+			if /^#{@word}/i.match input
 				@input = input
 				@from = from
 			end
