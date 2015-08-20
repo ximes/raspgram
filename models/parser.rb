@@ -6,6 +6,7 @@ module Parser
 
 		attr_accessor :matchers
 
+	 	include HelpModule
 	 	include DiceModule
 		include StatusModule
 		include PictureModule
