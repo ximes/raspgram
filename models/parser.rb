@@ -8,6 +8,7 @@ module Parser
 
 	 	include DiceModule
 		include StatusModule
+		include PictureModule
 
 		def self.parse(input, from)
 			parser = self.new(input, from)
