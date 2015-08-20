@@ -17,6 +17,8 @@ Raspgram::Api.controllers :api do
     if msg and user
     	message = Message.new(:content => msg, :from => user)
 
+        Response.new(Telegram.mark_read @from).execute!
+
         response.store(:received, true)
 
         if message and message.has_valid_response?
