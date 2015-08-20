@@ -60,7 +60,7 @@ namespace :deploy do
   end
 
   task :connect do
-    run "cd #{current_path} && rake connect"
+    run "cd #{current_path} && bundle exec rake connect"
   end
 end
 after :deploy, "deploy:connect"

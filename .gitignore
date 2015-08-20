@@ -2,7 +2,7 @@
 .ruby-gemset
 .ruby-version
 lib/tg
-config/*
+config/raspgram.yml
 tmp/*
 log/*
 log/**/*
