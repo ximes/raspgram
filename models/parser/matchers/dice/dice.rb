@@ -3,6 +3,9 @@ module Parser
 		def initialize
 			@word = "dice"
 		end
+		def help
+			" [size](optional)"
+		end
 		def parse(input, from)
 			if /^#{@word}/i.match input
 				@input = input

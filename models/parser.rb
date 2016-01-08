@@ -29,7 +29,7 @@ module Parser
 		def self.rule_list(input, from)
 			parser = self.new(input, from)
 			rules = parser.matchers.map do |match|
-				match.word
+				"#{match.word}#{match.help unless match.help.blank?}"
 			end
 		end
 		private
