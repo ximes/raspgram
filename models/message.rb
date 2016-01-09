@@ -14,6 +14,7 @@ class Message
 	   	args.each do |k,v|
 	      instance_variable_set("@#{k}", v) unless v.nil?
 	    end
+	    mark_as_read
 	    parse!
 	end
 
@@ -43,5 +44,9 @@ class Message
 			errors.add(:error, "Error")
 			true
 		end
+	end
+
+	def mark_as_read
+		Telegram.mark_read(from)
 	end
 end

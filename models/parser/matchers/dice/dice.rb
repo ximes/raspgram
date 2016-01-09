@@ -7,18 +7,20 @@ module Parser
 		def help
 			" [size](optional)"
 		end
+		def man
+			"Examples: dice | dice 3 | dice 90"
+		end
 		def parse(input, from)
 			options = input.match(/^([a-z]+)\s([0-9]+)$/i)
 			if options and options[1] == @word and options[2].to_i
 				@option = options[2].to_i
+				return true
 			end
-			if /^#{@word}/i.match input
-				@input = input
-				@from = from
-			end
+			super
 		end
 		def callback
-			Telegram.msg "#{1+rand(@option)}", @from
+			@response = "#{1+rand(@option)}"
+			super
 		end
 	end
 end

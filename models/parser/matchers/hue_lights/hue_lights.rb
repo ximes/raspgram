@@ -6,7 +6,10 @@ module Parser
 			@word = "hue"
 		end
 		def help
-			" [list] [light name | group name] [color] [brightness]"
+			"[list] [light name | group name] [color] [brightness]"
+		end
+		def man
+			"Examples: hue list | hue on | hue off | hue all off | hue [Group name] [status] | hue [Lamp number] [status], where [status] is a value from the list [dim, color, cold, warm, bright, red, blue, orange, purple, green, yellow]"
 		end
 		def parse(input, from)
 			word, command, light, option, color, brightness = input.scan(/^#{@word}|\s(\b[a-z0-9]+\b)+/i).flatten
@@ -28,10 +31,7 @@ module Parser
 					@brightness = brightness if brightness
 					@color = color if color
 			end
-			if /^#{@word}/i.match input
-				@input = input
-				@from = from
-			end
+			super
 		end
 		def callback
 			response = []
@@ -48,13 +48,13 @@ module Parser
 						if @light_client.lights.any?
 							response << "Lights:"
 							response << (@light_client.lights.map.each_with_index{|l, i| "#{i+1}.#{l.name}"}.join(","))
-							response << "."
+							response << ". "
 						end
 
 						if @light_client.groups.any?
 							response << "Groups:"
 							response << (@light_client.groups.map(&:name).join(","))
-							response << "."
+							response << ". "
 						end
 					else
 						
@@ -115,9 +115,9 @@ module Parser
 							end
 						end
 				end
-
-				Telegram.msg response.join(" "), @from
 			end
+			@response = response.join("")
+			super
 		end
 	end
 end

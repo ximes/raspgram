@@ -3,12 +3,6 @@ module Parser
 		def initialize
 			@word = "system pic"
 		end
-		def parse(input, from)
-			if /^#{@word}/i.match input
-				@input = input
-				@from = from
-			end
-		end
 		def callback
 			Response.new(Telegram.msg "Try this one:", @from).execute!
 			
@@ -17,7 +11,8 @@ module Parser
 
 			Response.new(Telegram.send_picture(img, @from)).execute!
 			
-			Telegram.msg "Do you like it?", @from
+			@response = "Do you like it?"
+			super
 		end
 	end
 end
