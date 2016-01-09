@@ -8,7 +8,7 @@ module Parser
 			" [size](optional)"
 		end
 		def man
-			"Examples: dice | dice 3 | dice 90"
+			"Examples: \ndice \n dice 3 \n dice 90"
 		end
 		def parse(input, from)
 			options = input.match(/^([a-z]+)\s([0-9]+)$/i)
