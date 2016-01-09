@@ -19,6 +19,8 @@ gem 'haml'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'sqlite3'
 
+gem 'hue' #to control lights
+
 group :development do
 	gem "rerun"
 	gem 'capistrano'
