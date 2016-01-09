@@ -1,6 +1,6 @@
 class Telegram
 	def self.msg(content, recipient)
-		return "msg user#" + recipient.to_s + ' "' + content.to_s + '"'
+		return "msg user##{recipient} #{content}"
 	end
 	def self.mark_read(recipient)
 		return "mark_read user##{recipient}"
