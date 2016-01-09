@@ -10,12 +10,12 @@ set :rvm_type, :system
 
 #general info
 set :user, 'deploy'
-set :domain, '192.168.0.16'
+set :domain, 'pi.mucchedighisa.com'
 set :applicationdir, "/srv/raspgram"
 set :scm, 'git'
 set :application, "raspgram"
 set :repository,  "git@github.com:ximes/raspgram.git"
-set :branch, 'develop'
+set :branch, 'padrino'
 set :git_shallow_clone, 1
 set :scm_verbose, true
 set :deploy_via, :remote_cache
