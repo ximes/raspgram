@@ -17,12 +17,12 @@ module Parser
 			@hue_client_action = "lights"
 
 			case command
-				when /list/
+				when /list/i
 					@hue_client_action = "list"
-				when /off/
+				when /off/i
 					@light = "all" 
 					@option = "off"
-				when /on/
+				when /on/i
 					@light = "all" 
 					@option = "on"
 				else
@@ -61,12 +61,12 @@ module Parser
 						affected_lights = []
 
 						case @light
-							when /all/
+							when /all/i
 							 	affected_lights = @light_client.lights
-							when /^[\d]+/
+							when /^[\d]+/i
 								affected_lights = @light_client.lights.select{|l| l.id == @light}
 							else
-								affected_lights = @light_client.groups.select{|g| g.name == @light}.map(&:lights).flatten
+								affected_lights = @light_client.groups.select{|g| g.name.downcase == @light.downcase}.map(&:lights).flatten
 						end
 
 						conditions = {}
@@ -77,52 +77,52 @@ module Parser
 					    #COLOR_TEMPERATURE_RANGE = 153..500
 
 						case @option
-							when /on/
+							when /on/i
 								conditions[:on] = true
-							when /off/
+							when /off/i
 								conditions[:on] = false
-							when /dim/
+							when /dim/i
 								conditions[:on] = true
 								conditions[:brightness] = 20
 								conditions[:saturation] = 155
-							when /cold/
+							when /cold/i
 								conditions[:on] = true
 								conditions[:color_temperature] = 155
-							when /warm/
+							when /warm/i
 								conditions[:on] = true
 								conditions[:color_temperature] = 500
-							when /bright/
+							when /bright/i
 								conditions[:on] = true
 								conditions[:brightness] = 255
-							when /red/
+							when /red/i
 								conditions[:hue] = 9550
 								conditions[:on] = true
 								conditions[:saturation] = 255
-							when /pink/
+							when /pink/i
 								conditions[:hue] = 55600
 								conditions[:on] = true
 								conditions[:saturation] = 255
-							when /blue/
+							when /blue/i
 								conditions[:hue] = 45000
 								conditions[:on] = true
 								conditions[:saturation] = 255
-							when /orange/
+							when /orange/i
 								conditions[:hue] = 16500
 								conditions[:on] = true
 								conditions[:saturation] = 255
-							when /purple/
+							when /purple/i
 								conditions[:hue] = 51850
 								conditions[:on] = true
 								conditions[:saturation] = 255
-							when /green/
+							when /green/i
 								conditions[:hue] = 25600
 								conditions[:on] = true
 								conditions[:saturation] = 255
-							when /yellow/
+							when /yellow/i
 								conditions[:hue] = 22000
 								conditions[:on] = true
 								conditions[:saturation] = 255
-							when /white|clear/
+							when /white|clear/i
 								conditions[:hue] = 35000
 								conditions[:on] = true
 								conditions[:saturation] = 255
