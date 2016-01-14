@@ -9,7 +9,7 @@ module Parser
 			"[list] [light name | group name] [color] [brightness]"
 		end
 		def man
-			"Examples: hue list | hue on | hue off | hue all off | hue [Group name] [status] | hue [Lamp number] [status], where [status] is a value from the list [dim, color, cold, warm, bright, red, blue, orange, purple, green, yellow]"
+			"Examples: hue list | hue on | hue off | hue all off | hue [Group name] [status] | hue [Lamp number] [status], where [status] is a value from the list [dim, cold, warm, bright, pink, red, blue, orange, purple, green, yellow, white]"
 		end
 		def parse(input, from)
 			word, command, light, option, color, brightness = input.scan(/^#{@word}|\s(\b[a-z0-9]+\b)+/i).flatten
@@ -69,46 +69,72 @@ module Parser
 								affected_lights = @light_client.groups.select{|g| g.name == @light}.map(&:lights).flatten
 						end
 
+						conditions = {}
+
+					    #HUE_RANGE = 0..65535
+					    #SATURATION_RANGE = 0..255
+					    #BRIGHTNESS_RANGE = 0..255
+					    #COLOR_TEMPERATURE_RANGE = 153..500
+
 						case @option
 							when /on/
-								hue_action = :on!
+								conditions[:on] = true
 							when /off/
-								hue_action = :off!
+								conditions[:on] = false
 							when /dim/
-								hue_action = :on!
-								hue_color_temperature = 20
-								hue_brightness = 20
-								hue_color = 40920
-							when /color/
-								hue_action = :on!
+								conditions[:on] = true
+								conditions[:brightness] = 20
+								conditions[:saturation] = 155
 							when /cold/
-								hue_action = :on!
+								conditions[:on] = true
+								conditions[:color_temperature] = 155
 							when /warm/
-								hue_action = :on!
+								conditions[:on] = true
+								conditions[:color_temperature] = 500
 							when /bright/
-								hue_action = :on!
+								conditions[:on] = true
+								conditions[:brightness] = 255
 							when /red/
-								hue_action = :on!
+								conditions[:hue] = 9550
+								conditions[:on] = true
+								conditions[:saturation] = 255
+							when /pink/
+								conditions[:hue] = 55600
+								conditions[:on] = true
+								conditions[:saturation] = 255
 							when /blue/
-								hue_action = :on!
+								conditions[:hue] = 45000
+								conditions[:on] = true
+								conditions[:saturation] = 255
 							when /orange/
-								hue_action = :on!
+								conditions[:hue] = 16500
+								conditions[:on] = true
+								conditions[:saturation] = 255
 							when /purple/
-								hue_action = :on!
+								conditions[:hue] = 51850
+								conditions[:on] = true
+								conditions[:saturation] = 255
 							when /green/
-								hue_action = :on!
+								conditions[:hue] = 25600
+								conditions[:on] = true
+								conditions[:saturation] = 255
 							when /yellow/
-								hue_action = :on!
+								conditions[:hue] = 22000
+								conditions[:on] = true
+								conditions[:saturation] = 255
+							when /white|clear/
+								conditions[:hue] = 35000
+								conditions[:on] = true
+								conditions[:saturation] = 255
 						end
 
 						if affected_lights.any?
+							
+							
 
 							affected_lights.each{|l| 
-								l.send(hue_action.to_sym)
-								l.brightness = hue_brightness if hue_brightness
-								l.hue = hue_color if hue_color
-								l.color_temperature = hue_color_temperature if hue_color_temperature
-								} if hue_action.present?
+								l.set_state(conditions)
+							} if conditions.any?
 
 							@light_client.lights.map.each_with_index do |l, index| 
 								response << "Status of lights: #{affected_lights.map(&:name)} changed"
