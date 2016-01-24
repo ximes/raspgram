@@ -19,6 +19,11 @@ gem 'haml'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'sqlite3'
 
+gem 'capybara'
+gem 'selenium-webdriver'
+gem 'capybara-mechanize'
+gem 'poltergeist'
+
 gem 'hue' #to control lights
 
 group :development do

@@ -9,6 +9,7 @@ module Parser
 	 	include HelpModule
 	 	include DiceModule
 		include StatusModule
+		include RefuseModule
 		include PictureModule
 		include HueLightsModule
 
