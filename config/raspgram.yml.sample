@@ -3,3 +3,5 @@ config:
   key:  'lib/tg/tg-server.pub' #TODO, opt path to the public key used 
   host: 'http://www.raspgram.dev' # host to connect with 
   admin_email: 'admin@example.com' # admin email
+  metoffice_api_key: '' # used for weather forecasts
+  metoffice_location_id: ''# used for weather forecasts

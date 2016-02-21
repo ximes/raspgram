@@ -56,6 +56,9 @@ GEM
     http_router (0.11.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     hue (0.1.5)
       curb
       json
@@ -88,6 +91,7 @@ GEM
       metaclass (~> 0.0.1)
     moneta (0.7.20)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
     net-scp (1.2.1)
@@ -592,6 +596,7 @@ DEPENDENCIES
   database_cleaner
   factory_girl
   haml
+  httparty
   hue
   mocha
   padrino (= 0.12.5)

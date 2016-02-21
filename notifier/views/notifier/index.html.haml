@@ -1,41 +1,15 @@
 .row
   .nine.columns
     %ul.weather
-      %li
-        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
-        %span 7 - 8
-      %li
-        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
-        %span 8 - 9
-      %li
-        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
-        %span 9 - 10
-      %li
-        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
-        %span 10 - 11
-      %li
-        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
-        %span 11 - 12
-      %li
-        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
-        %span 12 - 14
-      %li
-        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
-        %span 14 - 16
-      %li
-        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
-        %span 16 - 17
-      %li
-        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
-        %span 17 - 18
-      %li
-        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
-        %span 18 - 19
+      - @weather_forecasts.each do |w|
+        %li
+          #{weather_image(w[:type]).html_safe}
+          %span #{weather_time_range(w[:value])}
   .three.columns
     .temperature
       %h1
-        Fri 
-        %span.pull-right 25/12/15
+        #{Date.today.strftime("%a")}
+        %span.pull-right= Date.today.strftime("%m/%y")
         .external
           11
           %span.unit °
@@ -51,6 +25,8 @@
     %br
       <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_train.png" /></a>
       <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_bus.png" /></a>
+      - if @weather_warnings.any?
+        <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_not_found.png" /></a>
       <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_recyling_symbol.png" /></a>
 .row
   .four.columns

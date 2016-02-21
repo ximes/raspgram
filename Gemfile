@@ -23,6 +23,7 @@ gem 'capybara'
 gem 'selenium-webdriver'
 gem 'capybara-mechanize'
 gem 'poltergeist'
+gem 'httparty'
 
 gem 'hue' #to control lights
 
