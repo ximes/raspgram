@@ -1,0 +1,137 @@
+/*
+auto centering
+*/
+html, body{
+  background-color:#dddddd;
+  display: table; 
+  width:100%;
+  min-height:100%;
+  height:100%;
+}
+body, *, h1, p, span, div{
+  font-family: 'Rubik', sans-serif;
+}
+.wrapper{
+  margin:auto;
+  display: table-cell;
+  vertical-align: middle;
+}
+.wrapper .container{
+  background-color:#ffffff;
+  display: block;
+  width:800px;
+  height:600px;
+  overflow: hidden;
+  padding:10px;
+}
+
+/*Icons*/
+.icon{
+  display: block;
+  min-height: 25px;
+  min-width: 25px;
+  width: 100px;
+  height: auto;
+}
+.icon-weather{width:110px;height:110px; margin:auto;}
+.icon-alert{width:50px;height:50px; margin:auto 15px; display: inline-block;}
+.icon-crescent-moon{width:40px;height:40px;}
+.icon-indoors{width:30px;height:30px;}
+.icon-forward{width:40px;height:40px;}
+.icon-backward{width:40px;height:40px;}
+
+
+/*Styles*/
+
+h1{
+  font-size: 25px;
+  line-height: 50px;
+  vertical-align: middle;
+  padding:0;
+  margin:0px;
+  margin-bottom:10px;
+  border-bottom: 1px dotted grey;
+}
+h1 a.pull-right, h1 a.pull-left{
+  margin-top:7px;
+  padding-right:5px;
+  padding-left:5px;
+}
+.todo{
+
+}
+.todo li{
+  line-height:14px;
+  font-size:14px;
+}
+.weather{
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  display: table;
+}
+.weather li{
+  display: table-cell;
+  float: left;
+  min-width:20%;
+  text-align: center;
+  margin-bottom: 0;
+}
+.weather span{
+  font-size: 25px;
+  display: block;
+}
+.weather .icon{
+  margin-top:10px;
+}
+
+.alerts{
+  min-height: 100px;
+  vertical-align: middle;
+  text-align: center;
+}
+.temperature .unit{
+  font-size: 90%;  
+  vertical-align: top;
+}
+.temperature .external{
+  font-size: 120px;  
+  line-height: 1em;
+}
+.temperature .internal{
+  line-height: 45px;
+  font-size: 45px;
+  display: inline-block;
+  width: 65%;
+}
+.temperature .internal .unit{
+  font-size: 100%;
+}
+.temperature .internal .icon.icon-indoors{
+  margin-right:10px;
+  display: inline-block;
+}
+
+.pull-right{ float: right; text-align: right;}
+.pull-right img{ float: right;}
+.pull-left{ float: left;}
+
+.moon-phase{
+  width: 35%;
+}
+
+/*Calendar*/
+table.calendar{
+  width:100%;
+  height: 100%;
+}
+
+table.calendar th{
+  background-color: #eeeeee;
+  width:60px;
+  text-align: center
+}
+table.calendar td{
+  height:60px;
+  text-align: center
+}

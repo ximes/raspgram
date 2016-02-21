@@ -1,0 +1,73 @@
+.row
+  .nine.columns
+    %ul.weather
+      %li
+        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
+        %span 7 - 8
+      %li
+        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
+        %span 8 - 9
+      %li
+        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
+        %span 9 - 10
+      %li
+        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
+        %span 10 - 11
+      %li
+        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
+        %span 11 - 12
+      %li
+        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
+        %span 12 - 14
+      %li
+        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
+        %span 14 - 16
+      %li
+        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
+        %span 16 - 17
+      %li
+        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
+        %span 17 - 18
+      %li
+        %img.icon.icon-weather{src:"images/icon_weather_sunny.png"}
+        %span 18 - 19
+  .three.columns
+    .temperature
+      %h1
+        Fri 
+        %span.pull-right 25/12/15
+        .external
+          11
+          %span.unit °
+        .internal
+          %img.icon.icon-indoors{src:"images/icon_indoors.png"}
+          25
+          %span.unit °
+    .moon-phase.pull-right
+      %img.icon.icon-crescent-moon{src:"images/icon_crescent_moon.png"}
+.row
+  .twelve.columns.alerts
+    %h1
+    %br
+      <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_train.png" /></a>
+      <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_bus.png" /></a>
+      <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_recyling_symbol.png" /></a>
+.row
+  .four.columns
+    <h1>Today's <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
+    %ul.todo
+      %li To do!
+      %li To do!
+      %li To do!
+  .four.columns
+    <h1>Today's <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
+    %ul.todo
+      %li To do!
+      %li To do!
+      %li To do!
+  .four.columns
+    <h1>Collection <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
+    %ul.todo
+      - @refuse.each do |r|
+        %li
+          #{r}

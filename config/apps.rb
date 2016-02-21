@@ -37,7 +37,7 @@ Padrino.configure_apps do
 end
 
 # Mounts the core application for this project
-
 Padrino.mount("Raspgram::Admin", :app_file => Padrino.root('admin/app.rb')).to("/admin")
+Padrino.mount("Raspgram::Notifier", :app_file => Padrino.root('notifier/app.rb')).to("/notifier")
 Padrino.mount('Raspgram::Api', :app_file => Padrino.root('api/app.rb')).to('/api')
 Padrino.mount('Raspgram::App', :app_file => Padrino.root('app/app.rb')).to('/')
