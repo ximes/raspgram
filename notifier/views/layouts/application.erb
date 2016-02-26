@@ -17,6 +17,18 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
   <script type="text/javascript" src="/javascripts/jquery.fullpage.min.js"></script>
   <script type="text/javascript">
+    $(document).keydown(function(e) {
+        switch(e.which) {
+            case 38:
+            $(".fp-controlArrow.fp-prev").click();
+            break;
+            case 40:
+              $(".fp-controlArrow.fp-next").click();
+            break;
+            default: return;
+        }
+        e.preventDefault(); // prevent the default action (scroll / move caret)
+    });
     $(document).ready(function() {
       $('#fullpage').fullpage({
         sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
