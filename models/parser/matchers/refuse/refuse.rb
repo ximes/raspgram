@@ -15,8 +15,7 @@ module Parser
 
 			Response.new(Telegram.msg "Next collection days:", @from).execute!
 
-			@response = get_results.compact.join(". ")
-
+			@response = get_results.map{|type| "#{type[:type].capitalize}: #{type[:dates].select{|d| d if d>Date.today}.map{|d| d.strftime("%d/%m/%Y")}.join(', ')}"}.join(". ")
 			super
 		end
 
@@ -43,7 +42,7 @@ module Parser
 
 				page.all('.collection-rounds tr').drop(1).each do |tr|
 					res = tr.all('td').map(&:text).reject(&:blank?)
-					response << (res.first(2).join(": ") + ", next: " + res.drop(2).join(","))
+					response << {type: res.first.downcase.to_sym, dates: res.drop(1).map{|d| Date.parse(d) if d}}
 				end
 			rescue Exception => e
 				response = []
