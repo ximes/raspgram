@@ -26,20 +26,13 @@
             <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_not_found.png" /></a>
           <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_recyling_symbol.png" /></a>
     .row
-      .four.columns.todo-container
-        <h1>Today's <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
-        %ul.todo
-          %li To do!
-          %li To do!
-          %li To do!
       - @transports.each do |t|
         .four.columns.trasnport-container
           %h1 
-            <img class="icon icon-alert" src="images/icon_bus.png" /> 
-            to #{t[:to]}
+            Next to #{t[:to]}
           %ul.todo
             - t[:calls].first(3).each do |t|
-              %li Next #{t[:line_no]}: #{t[:next_time]}
+              %li #{t[:line_no]}: #{t[:next_time]}
       .four.columns.refuse-container
         <h1>Collection <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
         %ul.todo
