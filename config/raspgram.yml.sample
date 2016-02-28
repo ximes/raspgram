@@ -5,3 +5,5 @@ config:
   admin_email: 'admin@example.com' # admin email
   metoffice_api_key: '' # used for weather forecasts
   metoffice_location_id: ''# used for weather forecasts
+  bristol_transports_api_key: '' #used for transport alerts
+  tc_stop_id: '' #bus stop id to TC

@@ -15,6 +15,11 @@ Raspgram::Notifier.controllers :notifier do
 
 	@refuse = refuse.get_results.compact
 
+	transport_tc = Transport.new(settings.bristol_transports_api_key)
+	
+	@transport_tc = transport_tc.calls_to_tc(settings.tc_stop_id)
+	@transport_tc_warnings = [] #transport_tc.get_warnings(settings.tc_stop_id)
+
 	weather = Weather.new(settings.metoffice_api_key)
 	
 	@weather_warnings = weather.get_warnings(settings.metoffice_location_id)

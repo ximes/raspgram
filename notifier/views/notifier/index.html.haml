@@ -32,12 +32,11 @@
           %li To do!
           %li To do!
           %li To do!
-      .four.columns.todo-container
-        <h1>Today's <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
+      .four.columns.trasnport-container
+        <h1>Next to TC</h1>
         %ul.todo
-          %li To do!
-          %li To do!
-          %li To do!
+          - @transport_tc.first(5).each do |t|
+            %li Next #{t[:line_no]}: #{t[:next_time]}
       .four.columns.refuse-container
         <h1>Collection <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
         %ul.todo
