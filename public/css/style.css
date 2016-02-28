@@ -24,6 +24,12 @@ body, *, h1, p, span, div{
   overflow: hidden;
   padding:10px;
 }
+/*Sliders/dots*/
+.fp-controlArrow{
+  display: none!important;
+  border-color: transparent transparent transparent #ccc !important;
+  border-width: 30px 0 30px 34px !important;
+}
 
 /*Icons*/
 .icon{
@@ -33,10 +39,8 @@ body, *, h1, p, span, div{
   width: 100px;
   height: auto;
 }
-.icon-weather{width:96px;height:96px; margin:auto;}
+.icon-weather{width:130px;height:130px; margin:auto;}
 .icon-alert{width:50px;height:50px; margin:auto 15px; display: inline-block;}
-.icon-crescent-moon{width:40px;height:40px;}
-.icon-indoors{width:30px;height:30px;}
 .icon-forward{width:40px;height:40px;}
 .icon-backward{width:40px;height:40px;}
 
@@ -57,8 +61,12 @@ h1 a.pull-right, h1 a.pull-left{
   padding-right:5px;
   padding-left:5px;
 }
-.todo{
 
+.date{
+  font-size: 45px;  
+}
+.todo-container{
+  display: none;
 }
 .todo li{
   line-height:14px;
@@ -98,27 +106,10 @@ h1 a.pull-right, h1 a.pull-left{
   font-size: 100px;  
   line-height: 1em;
 }
-.temperature .internal{
-  line-height: 45px;
-  font-size: 45px;
-  display: inline-block;
-  width: 65%;
-}
-.temperature .internal .unit{
-  font-size: 100%;
-}
-.temperature .internal .icon.icon-indoors{
-  margin-right:10px;
-  display: inline-block;
-}
 
 .pull-right{ float: right; text-align: right;}
 .pull-right img{ float: right;}
 .pull-left{ float: left;}
-
-.moon-phase{
-  width: 35%;
-}
 
 /*Calendar*/
 table.calendar{

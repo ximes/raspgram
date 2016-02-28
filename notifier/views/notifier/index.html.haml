@@ -1,25 +1,21 @@
 .wrapper.slide
   .container
     .row
+      .three.columns
+        .temperature
+          %h1.date
+            #{Date.today.strftime("%a")}
+            %span.pull-right= Date.today.strftime("%m")
+          .external
+            11
+            %span.unit °
       .nine.columns
         %ul.weather
-          - @weather_forecasts.each do |w|
+          - @weather_forecasts.first(4).each do |w|
             %li
               #{weather_image(w[:type]).html_safe}
               %span #{weather_time_range(w[:value])}
-      .three.columns
-        .temperature
-          %h1
-            #{Date.today.strftime("%a")}
-            %span.pull-right= Date.today.strftime("%m/%y")
-            .external
-              11
-              %span.unit °
-            .internal
-              25
-              %span.unit °
-        .moon-phase.pull-right
-          %img.icon.icon-crescent-moon{src:"images/icon_crescent_moon.png"}
+
     .row
       .twelve.columns.alerts
         %h1
@@ -30,24 +26,27 @@
             <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_not_found.png" /></a>
           <a href="./notifier/internal.html"><img class="icon icon-alert" src="images/icon_recyling_symbol.png" /></a>
     .row
-      .four.columns
+      .four.columns.todo-container
         <h1>Today's <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
         %ul.todo
           %li To do!
           %li To do!
           %li To do!
-      .four.columns
+      .four.columns.todo-container
         <h1>Today's <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
         %ul.todo
           %li To do!
           %li To do!
           %li To do!
-      .four.columns
+      .four.columns.refuse-container
         <h1>Collection <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
         %ul.todo
           - @refuse.each do |r|
-            %li
-              #{r}
+            - if r[:dates].any?
+              %li 
+                #{r[:type].capitalize}: 
+                #{r[:dates].select{|d| d if d>Date.today}.map{|d| d.strftime("%d/%m/%Y")}.first}
 .wrapper.slide
   .container
-    %h1 other content
+    #loading loading...
+    #calendar
