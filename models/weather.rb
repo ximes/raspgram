@@ -36,37 +36,29 @@ class Weather
       forecast_request = self.class.get("/public/data/val/wxfcs/all/xml/#{location_id}", :query => {
       :key => @api_key,
       :res => '3hourly'})
+
       if forecast_request.response.body
-        forecasts = Nokogiri.XML(forecast_request.response.body).css("Period").select{|response|
-          response[:value] == Date.today.strftime("%Y-%m-%dZ")
+        forecasts = Nokogiri.XML(forecast_request.response.body).css("Rep").reject{ |response|
+          (response.parent[:value] == Date.today.strftime("%Y-%m-%dZ") and (Date.today.beginning_of_day + (response.content.to_i).minutes) > Time.now) or (!response.content.to_i.between?(300, 1200))
         }
       end
-      forecasts.map{|f| 
-        8.times.map.each_with_index{|time_range, index|
-          children = f.children.select{|v| v.content.to_i == 180*index}
-          if children.any?
-            child = children.first
-            {
-              f: child["F"], #Feels Like Temperature, units="C"
-              g: child["G"], #Wind Gust, units="mph"
-              h: child["H"], #Screen Relative Humidity , units="%">
-              t: child["T"], #Temperature, units="C"
-              v: child["V"], #Visibility
-              d: child["D"], #Wind Direction, units="compass"
-              s: child["S"], #Wind Speed, units="mph"
-              u: child["U"], #Max UV Index
-              type: child["W"].to_i, #Weather Type
-              p: child["Pp"], #Precipitation Probability, units="%"
-              value: (180*index)..(180*(index+1))
-            }
-          else
-            {
-              type: nil,
-              value: (180*index)..(180*(index+1))
-            }
-          end
+
+      forecasts.map{|child| 
+        {
+          f: child["F"], #Feels Like Temperature, units="C"
+          g: child["G"], #Wind Gust, units="mph"
+          h: child["H"], #Screen Relative Humidity , units="%">
+          t: child["T"], #Temperature, units="C"
+          v: child["V"], #Visibility
+          d: child["D"], #Wind Direction, units="compass"
+          s: child["S"], #Wind Speed, units="mph"
+          u: child["U"], #Max UV Index
+          type: child["W"].to_i, #Weather Type
+          p: child["Pp"], #Precipitation Probability, units="%"
+          value: child.content.to_i..(child.content.to_i + 180), #(180*index)..(180*(index+1)),
+          date: child.parent[:value]
         }
-      }.first
+      }.flatten
 
     rescue Exception => e
       []
