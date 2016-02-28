@@ -13,7 +13,7 @@ class Transport
    
 
   end
-  def calls_to_tc(stop_id)
+  def get_calls(stop_id)
     begin
       transport_request = self.class.get("/api/2-0/rti/stopboard", :query => {
       :apikey => @api_key,
@@ -23,15 +23,14 @@ class Transport
       })
 
       if transport_request.response.body
-        calls = Nokogiri.XML(transport_request.response.body).css("StopBoardRow").select{|d|
-          d.css("MainLabel").children.first.content == "Cribbs Causeway"
-        }
+        calls = Nokogiri.XML(transport_request.response.body).css("StopBoardRow")
       end
 
       calls.map{|child| 
         {
           line_no: child.css("IDLabel").children.first.content,
           next_time: child.css("TimeLabel").children.first.content,
+          destination: child.css("MainLabel").children.first.content
         }
       }.flatten
 

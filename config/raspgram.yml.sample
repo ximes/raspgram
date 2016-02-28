@@ -6,4 +6,6 @@ config:
   metoffice_api_key: '' # used for weather forecasts
   metoffice_location_id: ''# used for weather forecasts
   bristol_transports_api_key: '' #used for transport alerts
-  tc_stop_id: '' #bus stop id to TC
+  stop_ids: 
+    to_tc: '' #bus stop id
+    to_temple_meads: '' #bus stop id

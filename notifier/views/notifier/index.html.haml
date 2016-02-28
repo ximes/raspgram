@@ -32,11 +32,14 @@
           %li To do!
           %li To do!
           %li To do!
-      .four.columns.trasnport-container
-        <h1>Next to TC</h1>
-        %ul.todo
-          - @transport_tc.first(5).each do |t|
-            %li Next #{t[:line_no]}: #{t[:next_time]}
+      - @transports.each do |t|
+        .four.columns.trasnport-container
+          %h1 
+            <img class="icon icon-alert" src="images/icon_bus.png" /> 
+            to #{t[:to]}
+          %ul.todo
+            - t[:calls].first(3).each do |t|
+              %li Next #{t[:line_no]}: #{t[:next_time]}
       .four.columns.refuse-container
         <h1>Collection <a href="./notifier/internal.html" class="pull-right"><img class="icon icon-forward" src="images/icon_forward.png" /></a></h1>
         %ul.todo
@@ -49,3 +52,11 @@
   .container
     #loading loading...
     #calendar
+.wrapper.slide.transport
+  .container
+    - @transports.each do |t|
+      .six.columns.trasnport-container
+        %h1 Next to #{t[:to]}
+        %ul.todo
+          - t[:calls].first(15).each do |t|
+            %li Next #{t[:line_no]}: #{t[:next_time]} - To #{t[:destination]}
