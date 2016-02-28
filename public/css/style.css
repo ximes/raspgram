@@ -24,6 +24,21 @@ body, *, h1, p, span, div{
   overflow: hidden;
   padding:10px;
 }
+#footer{
+  position:fixed;
+  height: 50px;
+  background-color: transparent;
+  display:block;
+  width: 100%;
+  z-index:9;
+  text-align:center;
+  color: #black;
+  padding: 20px 0 0 0;
+  bottom:0px;
+}
+#footer .container{
+  background-color: transparent;
+}
 /*Sliders/dots*/
 .fp-controlArrow{
   display: none!important;
@@ -43,6 +58,7 @@ body, *, h1, p, span, div{
 .icon-alert{width:50px;height:50px; margin:auto 15px; display: inline-block;}
 .icon-forward{width:40px;height:40px;}
 .icon-backward{width:40px;height:40px;}
+.icon-refresh{width:30px;height:30px;}
 
 
 /*Styles*/

@@ -68,8 +68,23 @@
 <body>
   <div id="fullpage">
     <div class="section" id="home-slide">
-      <%= yield %>  
+      <%= yield %>
     </div>
   </div> 
+  <div id="footer">
+    <div class="wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns">
+            <div class="pull-left">
+              <a href="javascript:document.location.reload();" class="pull-left"><img class="icon icon-refresh" src="images/icon_refresh.png" /></a>
+              Updated at <%= Time.now.strftime("%H:%M") %>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
