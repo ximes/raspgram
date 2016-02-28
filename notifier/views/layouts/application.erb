@@ -13,9 +13,14 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/jquery.fullpage.min.css">
   <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href='/css/fullcalendar.css' rel='stylesheet' />
+  <link href='/css/fullcalendar.print.css' rel='stylesheet' media='print' />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
   <script type="text/javascript" src="/javascripts/jquery.fullpage.min.js"></script>
+  <script src='/javascripts/moment.min.js'></script>
+  <script src='/javascripts/fullcalendar.min.js'></script>
+  <script src='/javascripts/gcal.js'></script>
   <script type="text/javascript">
     $(document).keydown(function(e) {
         switch(e.which) {
@@ -37,6 +42,26 @@
         continuousVertical: true
       });
     });
+  </script>
+  <script>
+    $(document).ready(function() {
+      $('#calendar').fullCalendar({
+        // http://fullcalendar.io/docs/google_calendar/
+        //googleCalendarApiKey: '',
+        // US Holidays
+        events: 'usa__en@holiday.calendar.google.com',
+        eventClick: function(event) {
+          // opens events in a popup window
+          window.open(event.url, 'gcalevent', 'width=700,height=600');
+          return false;
+        },
+        loading: function(bool) {
+          $('#loading').toggle(bool);
+        }
+      });
+      
+    });
+
   </script>
 </head>
 <body>
