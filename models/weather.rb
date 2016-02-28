@@ -39,7 +39,7 @@ class Weather
 
       if forecast_request.response.body
         forecasts = Nokogiri.XML(forecast_request.response.body).css("Rep").reject{ |response|
-          (response.parent[:value] == Date.today.strftime("%Y-%m-%dZ") and (Date.today.beginning_of_day + (response.content.to_i).minutes) > Time.now) or (!response.content.to_i.between?(300, 1200))
+          (response.parent[:value] == Date.today.strftime("%Y-%m-%dZ") and (Date.today.beginning_of_day + (response.content.to_i).minutes) <= Time.now) or (!response.content.to_i.between?(300, 1200))
         }
       end
 
