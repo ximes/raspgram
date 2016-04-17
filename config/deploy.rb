@@ -58,9 +58,4 @@ namespace :deploy do
 	update
 	start
   end
-
-  task :connect do
-    run "cd #{current_path} && rake connect"
-  end
 end
-after :deploy, "deploy:connect"
