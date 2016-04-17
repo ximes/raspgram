@@ -15,7 +15,7 @@ set :applicationdir, "/srv/raspgram"
 set :scm, 'git'
 set :application, "raspgram"
 set :repository,  "git@github.com:ximes/raspgram.git"
-set :branch, 'develop'
+set :branch, 'rails'
 set :git_shallow_clone, 1
 set :scm_verbose, true
 set :deploy_via, :remote_cache
