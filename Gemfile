@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+	source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -37,7 +37,11 @@ gem 'haml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+	gem 'byebug'
+	gem 'capistrano', '~> 3.1'
+	gem 'capistrano-bundler', '~> 1.1.2'
+	gem 'capistrano-rvm'
+	gem 'capistrano-rails'
 end
 
 group :development do
