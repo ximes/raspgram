@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+  devise_for :users, path: '/manage/users'
   root 'homepage#index'
   resource :updates, only: [:create], as: :api, path: 'api'
+  namespace :manage do
+    get "/", to: "dashboard#index"
+    resources :users
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
