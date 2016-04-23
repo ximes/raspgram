@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   scope :manage do
     get "/", to: "dashboard#index"
     resources :users
+    resources :tricks, except: [:destroy, :create, :new]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
