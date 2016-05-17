@@ -13,30 +13,21 @@ class TelegramBot
     update = Telegram::Bot::Types::Update.new(data)
     @message = extract_message(update)
 
+    question = 'What would you like me to do?'
+
     case @message
       when Telegram::Bot::Types::CallbackQuery
         if @message.data == 'cancel'
           hide_keyboard
-          send_message(text: "ok")
+          send_message(text: "ok. #{question}")
         end
+        
+        parse_callback_queries
 
-        Gestures.included_modules.each do |included_module|
-          a = included_module::Internal.init(self)
-          a.call
-        end
       when Telegram::Bot::Types::Message
         if @message.text == '/help'
-          question = 'What would you like me to do?'
-          kb = [
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Dice', callback_data: 'dice'),
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Lights', callback_data: 'light'),
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Status', callback_data: 'status'),
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Refuse', callback_data: 'refuse'),
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Transport', callback_data: 'transport'),
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Cancel', callback_data: 'cancel')
-          ]
-          markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
-          client.api.send_message(text: question, reply_markup: markup)
+          markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: gesture_commands)
+          @client.api.send_message(text: question, reply_markup: markup, chat_id: @message.chat.id)
         else
 
         end
@@ -46,7 +37,7 @@ class TelegramBot
   end
 
   def send_message(opt)
-    client.api.send_message({chat_id: @message.from.id}.merge(opt))
+    @client.api.send_message({chat_id: @message.from.id}.merge(opt))
   end
 
   private
