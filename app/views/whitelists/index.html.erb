@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Whitelists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th>Active</th>
+      <th>Phone no</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @whitelists.each do |whitelist| %>
+      <tr>
+        <td><%= whitelist.name %></td>
+        <td><%= whitelist.user_id %></td>
+        <td><%= whitelist.active %></td>
+        <td><%= whitelist.phone_no %></td>
+        <td><%= link_to 'Show', whitelist %></td>
+        <td><%= link_to 'Edit', edit_whitelist_path(whitelist) %></td>
+        <td><%= link_to 'Destroy', whitelist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Whitelist', new_whitelist_path %>

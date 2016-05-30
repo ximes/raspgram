@@ -1,12 +1,14 @@
 class TelegramBot
   attr_reader :token, :client
   attr_reader :message
+  attr_accessor :allowed
 
   include Tricks
 
   def initialize
     @token = Rails.application.secrets[:token]
     @client = Telegram::Bot::Client.new(@token)
+    @allowed = false
   end
 
   def update(data)
@@ -14,6 +16,10 @@ class TelegramBot
     @message = extract_message(update)
 
     question = 'What would you like me to do?'
+
+    parse_pre_filters
+    
+    return false unless @allowed
 
     case @message
       when Telegram::Bot::Types::CallbackQuery
