@@ -1,7 +1,7 @@
 class CreateRefuseAddresses < ActiveRecord::Migration
   def up
   	#add the refuse trick to db
-  	Trick.create(name: 'Refuse (Bristol)', class_name: "refuse", active: false)
+  	Trick.create(name: 'Refuse (Bristol)', class_name: "Refuse", active: false)
 
     create_table :refuse_addresses do |t|
       t.string :name
@@ -15,7 +15,7 @@ class CreateRefuseAddresses < ActiveRecord::Migration
   end
   def down
   	#removerefuse trick from db
-  	Trick.find_by(class_name: 'refuse').destroy
+  	Trick.find_by(class_name: 'Refuse').destroy
 
     drop_table :refuse_addresses
   end
