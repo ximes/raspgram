@@ -4,6 +4,7 @@ class Whitelist < ActiveRecord::Base
 	def self.import(telegram_contact)
 		contact = Whitelist.find_or_initialize_by(:user_id => telegram_contact.user_id)
 		contact.name = "#{telegram_contact.first_name} #{telegram_contact.last_name}"
+		contact.active = true
 		contact.phone_no = telegram_contact.phone_number if telegram_contact.phone_number
 		begin 
 			contact.save!

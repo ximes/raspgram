@@ -1,7 +1,7 @@
 class CreateWhitelists < ActiveRecord::Migration
   def up
   	#add the refuse trick to db
-  	Trick.create(name: 'Whitelist', class_name: "whitelist", active: true, core: true)
+  	Trick.create(name: 'Whitelist', class_name: "Whitelist", active: true, core: true)
 
     create_table :whitelists do |t|
   		t.string :name
@@ -14,7 +14,7 @@ class CreateWhitelists < ActiveRecord::Migration
   end
   def down
   	#removerefuse trick from db
-  	Trick.find_by(class_name: 'whitelist').destroy
+  	Trick.find_by(class_name: 'Whitelist').destroy
 
     drop_table :whitelists
   end
