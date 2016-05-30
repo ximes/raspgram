@@ -1,0 +1,2 @@
+class Status < Trick
+end

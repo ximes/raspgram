@@ -2,7 +2,7 @@ class TelegramBot
   attr_reader :token, :client
   attr_reader :message
 
-  include Gestures
+  include Tricks
 
   def initialize
     @token = Rails.application.secrets[:token]
@@ -26,7 +26,7 @@ class TelegramBot
 
       when Telegram::Bot::Types::Message
         if @message.text == '/help'
-          markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: gesture_commands)
+          markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: trick_commands)
           @client.api.send_message(text: question, reply_markup: markup, chat_id: @message.chat.id)
         else
 

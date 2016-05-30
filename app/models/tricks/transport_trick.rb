@@ -1,7 +1,7 @@
-module Gestures::Transport
+module Tricks::TransportTrick
 	module Definition
 		def self.definition
-			Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Transport Check', callback_data: 'transport')
+			Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Transport Check', callback_data: 'transport') if Transport::callable?
 		end
 	end
 	module CallbackQuery

@@ -1,8 +1,8 @@
-module Gestures::Dice
+module Tricks::DiceTrick
 	
 	module Definition
 		def self.definition
-			Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Dice', callback_data: 'dice')
+			Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Dice', callback_data: 'dice') if Dice::callable?
 		end
 	end
 	module CallbackQuery
@@ -32,11 +32,6 @@ module Gestures::Dice
 	        if context.message.data == 'dice_100'
 	          context.send_message(text: Dice.throw(100), chat_id: context.message.message.chat.id)
 	        end
-		end
-	end
-	class Dice
-		def self.throw(val)
-			"Yeah, here's your result: #{(rand(val) + 1)}"
 		end
 	end
 end

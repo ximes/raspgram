@@ -1,4 +1,4 @@
-module Gestures::Status
+module Tricks::StatusTrick
 	module Definition
 		def self.definition
 			Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Status', callback_data: 'status')

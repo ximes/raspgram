@@ -1,0 +1,2 @@
+class Hue < Trick
+end

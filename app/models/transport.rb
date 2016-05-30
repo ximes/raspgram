@@ -1,0 +1,2 @@
+class Transport < Trick
+end
