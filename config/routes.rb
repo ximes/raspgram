@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   scope :manage do
     get "/", to: "dashboard#index"
     resources :users
+    resources :refuse_addresses
     resources :tricks, except: [:destroy, :create, :new]
   end
 

@@ -31,6 +31,11 @@ gem 'telegram-bot-ruby'
 gem 'devise'
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
+
+gem 'capybara', '~> 2.1'
+gem 'capybara-mechanize'
+gem 'poltergeist'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
