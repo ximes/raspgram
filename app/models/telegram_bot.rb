@@ -25,12 +25,13 @@ class TelegramBot
         parse_callback_queries
 
       when Telegram::Bot::Types::Message
+        
         if @message.text == '/help'
           markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: trick_commands)
           @client.api.send_message(text: question, reply_markup: markup, chat_id: @message.chat.id)
-        else
-
         end
+
+        parse_callback_messages
 
       else
     end  
