@@ -82,6 +82,7 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.1)
+    curb (0.9.3)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -104,6 +105,11 @@ GEM
       tilt
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    hue (0.2.0)
+      curb
+      json
+      log_switch (= 0.4.0)
+      thor
     i18n (0.7.0)
     ice_nine (0.11.2)
     jbuilder (2.4.1)
@@ -121,6 +127,7 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
+    log_switch (0.4.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -265,6 +272,7 @@ DEPENDENCIES
   devise
   execjs
   haml
+  hue
   jbuilder (~> 2.0)
   jquery-rails
   mysql2

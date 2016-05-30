@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get "/", to: "dashboard#index"
     resources :users
     resources :refuse_addresses
+    resources :lights, only: [:index, :create]
     resources :whitelists
     resources :tricks, except: [:destroy, :create, :new]
   end

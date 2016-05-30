@@ -1,2 +1,0 @@
-class Hue < Trick
-end
