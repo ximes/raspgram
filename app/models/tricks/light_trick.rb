@@ -95,7 +95,7 @@ module Tricks::LightTrick
 	                    hue_brightness = 20
 	                when /bright/
 	                    hue_action = :on!
-	                    hue_brightness = 100
+	                    hue_brightness = 255
 	                when /cold/
 	                    hue_action = :on!
 	                    hue_color_temperature = 20
