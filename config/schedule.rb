@@ -20,6 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 
 #every :thursday, at: '19pm' do
+
 #every 1.minute do
 #   runner "Tricks::StatusTrick::Scheduler.new"
 #end
