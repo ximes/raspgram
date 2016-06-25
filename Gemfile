@@ -36,6 +36,8 @@ gem 'capybara', '~> 2.1'
 gem 'capybara-mechanize'
 gem 'poltergeist'
 
+gem 'whenever', :require => false
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

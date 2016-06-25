@@ -11,4 +11,14 @@ module Tricks::StatusTrick
 	        end
   		end
 	end
+	class Scheduler
+		def initialize
+			response = '.'
+			Whitelist.active.each do |user|
+		    	@token = Rails.application.secrets[:token]
+    			@client = Telegram::Bot::Client.new(@token)
+				@client.api.send_message(text: response, chat_id: user.user_id)
+			end
+		end
+	end
 end
