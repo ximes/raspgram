@@ -19,11 +19,13 @@
 
 # Learn more: http://github.com/javan/whenever
 
-#every :thursday, at: '19pm' do
-
 #every 1.minute do
 #   runner "Tricks::StatusTrick::Scheduler.new"
 #end
-every 1.day, at: '23pm' do
+every 1.day, at: '9am' do
    runner "Tricks::TeeteeTrick::Scheduler.new"
+end
+
+every :thursday, at: '19pm' do
+   runner "Tricks::RefuseTrick::Scheduler.new"
 end
