@@ -47,6 +47,10 @@ class TelegramBot
     @client.api.send_message({chat_id: @message.from.id}.merge(opt))
   end
 
+  def send_photo(opt)
+    @client.api.send_photo({chat_id: @message.from.id}.merge(opt))
+  end
+
   private
 
   def hide_keyboard
