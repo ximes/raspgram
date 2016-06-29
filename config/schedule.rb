@@ -22,7 +22,7 @@
 #every 1.minute do
 #   runner "Tricks::StatusTrick::Scheduler.new"
 #end
-every 1.day, at: '9am' do
+every 1.day, at: '8am' do
    runner "Tricks::TeeteeTrick::Scheduler.new"
 end
 
