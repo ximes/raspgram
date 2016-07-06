@@ -20,7 +20,7 @@ class ScraperDefinitionsController < ApplicationController
   	@scraper = Scraper::Definition.new(scraper_params)
 
   	if @scraper.save
-  		redirect_to scraper_definition_path, notice: 'Scraper was successfully created.' 
+  		redirect_to scraper_definitions_path, notice: 'Scraper was successfully created.' 
   	else
   		render :edit
   	end
