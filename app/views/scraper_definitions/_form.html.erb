@@ -2,9 +2,25 @@
   <%= f.input :name %>
   <%= f.input :app_url %>
   <%= f.input :list_url %>
-  <%= f.input :active %>
+
+  <h3>Matcher rule/action for list</h3>
+  <%= f.simple_fields_for :list_rules do |rule| %>
+      <%= render 'list_rule_fields', f: rule %>
+  <% end %>
+  <div class="links">
+    <%= link_to_add_association 'add rule', f, :list_rules %>
+  </div>
+
+  <h3>Matcher rule/action for detail</h3>
+  <%= f.simple_fields_for :detail_rules do |rule| %>
+      <%= render 'detail_rule_fields', f: rule %>
+  <% end %>
+  <div class="links">
+    <%= link_to_add_association 'add rule', f, :detail_rules %>
+  </div>
   
- <%= f.input :schedule_range, as: :check_boxes, collection: Scraper::Definition.schedule_range_options %>
+  <%= f.input :schedule_range, as: :check_boxes, collection: Scraper::Definition.schedule_range_options %>
+  <%= f.input :active %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn btn-primary' %>

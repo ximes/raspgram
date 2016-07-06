@@ -57,7 +57,7 @@ class ScraperDefinitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scraper_params
-      params.require(:scraper_definition).permit(:name, :active, :app_url, :list_url, :schedule_range => [])
+      params.require(:scraper_definition).permit(:name, :active, :app_url, :list_url, :schedule_range => [], list_rules_attributes: [:id, :matcher_code, :action_code, :_destroy], detail_rules_attributes: [:id, :matcher_code, :action_code, :_destroy])
     end
 
 end

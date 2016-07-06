@@ -6,6 +6,9 @@ class Scraper::Definition < ActiveRecord::Base
 	has_many :list_rules, -> { where(ruleable_type: 'List') }, class_name: "Scraper::Rule", foreign_key: :ruleable_id, before_add: :set_as_list
 	has_many :detail_rules, -> { where(ruleable_type: 'Detail') }, class_name: "Scraper::Rule", foreign_key: :ruleable_id, before_add: :set_as_detail
 
+	accepts_nested_attributes_for :list_rules, reject_if: :all_blank, allow_destroy: true
+	accepts_nested_attributes_for :detail_rules, reject_if: :all_blank, allow_destroy: true
+
 	def self.schedule_range_options
 		["12 AM"] + (1.upto(11).collect{ |n| "#{n} AM" }) + ["12 PM"] + (1.upto(11).collect{ |n| "#{n} PM"})
 	end
