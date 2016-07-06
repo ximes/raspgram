@@ -9,6 +9,13 @@ class Scraper::Definition < ActiveRecord::Base
 	accepts_nested_attributes_for :list_rules, reject_if: :all_blank, allow_destroy: true
 	accepts_nested_attributes_for :detail_rules, reject_if: :all_blank, allow_destroy: true
 
+	def launch!
+		list_rules.each do |rule|
+			@response = ""
+			eval(rule.matcher_code, binding) if rule.matcher_code
+			eval(rule.action_code, binding) if rule.action_code
+		end
+	end
 	def self.schedule_range_options
 		["12 AM"] + (1.upto(11).collect{ |n| "#{n} AM" }) + ["12 PM"] + (1.upto(11).collect{ |n| "#{n} PM"})
 	end

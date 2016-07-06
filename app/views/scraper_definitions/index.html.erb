@@ -19,6 +19,7 @@
         <td><%= scraper.active %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_scraper_definition_path(scraper), :class => 'btn btn-primary btn-xs' %>
+          <%= link_to t('.launch', :default => t("helpers.links.launch")), scraper_definition_launch_path(scraper), :class => 'btn btn-primary btn-xs', method: :put %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")), scraper_definition_path(scraper), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-primary btn-xs' %>
         </td>
       </tr>

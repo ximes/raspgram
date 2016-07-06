@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     resources :refuse_addresses
     resources :lights, only: [:index, :create]
     resources :whitelists
-    resources :scraper_definitions, path: :scrapers
+    resources :scraper_definitions, path: :scrapers do
+      put :launch, to: "scraper_definitions#launch"
+    end
     resources :tricks, except: [:destroy, :create, :new]
   end
 

@@ -26,7 +26,13 @@ class ScraperDefinitionsController < ApplicationController
   	end
   end
 
-
+  def launch
+    begin
+      Scraper::Definition.find(params[:scraper_definition_id]).launch!
+    rescue Exception => e
+    end
+    redirect_to scraper_definitions_path, notice: 'Scraper launched'
+  end
   # GET /tricks/1/edit
   def edit
   end
