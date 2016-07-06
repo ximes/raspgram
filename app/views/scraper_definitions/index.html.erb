@@ -1,0 +1,31 @@
+<%- model_class = Scraper::Definition -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:active) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @scrapers.each do |scraper| %>
+      <tr>
+        <td><%= link_to scraper.id, edit_refuse_address_path(scraper) %></td>
+        <td><%= scraper.name %></td>
+        <td><%= scraper.active %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_scraper_definition_path(scraper), :class => 'btn btn-primary btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")), scraper_definition_path(scraper), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-primary btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="actions">
+<%= link_to t('.new', :default => t("helpers.links.new")),
+                      new_refuse_address_path, :class => 'btn btn-primary btn-xs' %>
+</div>
