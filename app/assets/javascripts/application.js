@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-
+//= require cocoon
 //= require js/flot/jquery.flot.js
 //= require js/flot/jquery.flot.pie.js
 //= require js/flot/jquery.flot.orderBars.js

@@ -37,6 +37,7 @@ gem 'capybara-mechanize'
 gem 'poltergeist'
 
 gem 'whenever', :require => false
+gem "cocoon"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

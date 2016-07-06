@@ -72,6 +72,7 @@ GEM
       mechanize (~> 2.7.0)
     chronic (0.10.2)
     cliver (0.3.2)
+    cocoon (1.2.9)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.1)
@@ -271,6 +272,7 @@ DEPENDENCIES
   capistrano-rvm
   capybara (~> 2.1)
   capybara-mechanize
+  cocoon
   coffee-rails (~> 4.1.0)
   devise
   execjs
