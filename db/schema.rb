@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625152003) do
+ActiveRecord::Schema.define(version: 20160706200316) do
 
   create_table "refuse_addresses", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -21,6 +21,27 @@ ActiveRecord::Schema.define(version: 20160625152003) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "scraper_definitions", force: :cascade do |t|
+    t.string   "app_url",        limit: 255
+    t.string   "list_url",       limit: 255
+    t.string   "name",           limit: 255
+    t.boolean  "active"
+    t.text     "schedule_range", limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "scraper_rules", force: :cascade do |t|
+    t.text     "matcher_code",  limit: 65535
+    t.text     "action_code",   limit: 65535
+    t.integer  "ruleable_id",   limit: 4
+    t.string   "ruleable_type", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "scraper_rules", ["ruleable_type", "ruleable_id"], name: "index_scraper_rules_on_ruleable_type_and_ruleable_id", using: :btree
 
   create_table "tricks", force: :cascade do |t|
     t.string   "name",       limit: 255
