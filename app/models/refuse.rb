@@ -5,10 +5,8 @@ class Refuse < Trick
 
         if active_address.present?
           	begin 
+                Scraper::Definition.init
                 Capybara.app_host = "https://www2.bristol.gov.uk"
-                Capybara.run_server = false
-                Capybara.current_driver = :poltergeist
-                Capybara.javascript_driver = :poltergeist
                 Capybara.visit('https://www2.bristol.gov.uk/forms/collection-day-finder')
                 Capybara.find('#edit-house-number').set(active_address.house_no)
                 Capybara.find('#edit-postcode').set(active_address.postcode)

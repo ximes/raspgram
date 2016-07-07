@@ -3,11 +3,8 @@ class Teetee < Trick
 	def self.current_design
       	begin 
             destination_path = Rails.root.join('tmp') 
-            
+            Scraper::Definition.init
             Capybara.app_host = "http://www.teetee.eu/"
-            Capybara.run_server = false
-            Capybara.current_driver = :poltergeist
-            Capybara.javascript_driver = :poltergeist
             Capybara.visit('http://www.teetee.eu/')
 
             design_url = Capybara.find('.box-design.sidebar img')['src']

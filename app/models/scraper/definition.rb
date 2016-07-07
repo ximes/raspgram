@@ -12,9 +12,13 @@ class Scraper::Definition < ActiveRecord::Base
 	accepts_nested_attributes_for :detail_rules, reject_if: :all_blank, allow_destroy: true
 
 	def self.init
+		Capybara.register_driver :poltergeist do |app|
+			Capybara::Poltergeist::Driver.new(app, :js_errors => false)
+		end
 		Capybara.run_server = false
 		Capybara.current_driver = :poltergeist
 		Capybara.javascript_driver = :poltergeist
+
 
 		@token = Rails.application.secrets[:token]
 		@client = Telegram::Bot::Client.new(@token)

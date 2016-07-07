@@ -1,8 +1,3 @@
-require 'capybara'
-require 'capybara/dsl'
-require 'capybara/mechanize'
-require 'capybara/poltergeist'
-
 module Tricks::RefuseTrick
 	module Definition
 		def self.definition
@@ -28,8 +23,7 @@ module Tricks::RefuseTrick
 		def initialize
 			response = Refuse::next
 			Whitelist.active.each do |user|
-		    	@token = Rails.application.secrets[:token]
-    			@client = Telegram::Bot::Client.new(@token)
+				Scraper::Definition.init
 				@client.api.send_message(text: response, chat_id: user.user_id)
 			end
 		end
