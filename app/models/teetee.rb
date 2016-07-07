@@ -3,7 +3,7 @@ class Teetee < Trick
 	def self.current_design
       	begin 
             destination_path = Rails.root.join('tmp') 
-            Scraper::Definition.init
+            @client = Scraper::Definition.init
             Capybara.app_host = "http://www.teetee.eu/"
             Capybara.visit('http://www.teetee.eu/')
 

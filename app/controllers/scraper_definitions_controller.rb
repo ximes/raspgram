@@ -1,4 +1,5 @@
 class ScraperDefinitionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_scraper, only: [:show, :edit, :update, :destroy]
 
   # GET /tricks
@@ -27,7 +28,7 @@ class ScraperDefinitionsController < ApplicationController
   end
 
   def launch
-    Scraper::Definition.init
+    @client = Scraper::Definition.init
     begin
       Scraper::Definition.find(params[:scraper_definition_id]).launch!
     rescue Exception => e

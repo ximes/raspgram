@@ -21,11 +21,11 @@ class Scraper::Definition < ActiveRecord::Base
 
 
 		@token = Rails.application.secrets[:token]
-		@client = Telegram::Bot::Client.new(@token)
+		return Telegram::Bot::Client.new(@token)
 	end
 
 	def launch!
-		Scraper::Definition.init
+		@client = Scraper::Definition.init
 		@response = ""
 		begin
 			list_rules.each do |rule|
@@ -41,7 +41,7 @@ class Scraper::Definition < ActiveRecord::Base
 		["12 AM"] + (1.upto(11).collect{ |n| "#{n} AM" }) + ["12 PM"] + (1.upto(11).collect{ |n| "#{n} PM"})
 	end
 	def self.launch_scheduled
-		self.init
+		@client = Scraper::Definition.init
 		active.select{|s| s.schedule_range.include?(Time.now.strftime("%l %p").strip)}.each do |scraper|
 			scraper.launch!
 		end
