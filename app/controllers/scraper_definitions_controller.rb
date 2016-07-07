@@ -27,9 +27,12 @@ class ScraperDefinitionsController < ApplicationController
   end
 
   def launch
+    Scraper::Definition.init
     begin
       Scraper::Definition.find(params[:scraper_definition_id]).launch!
     rescue Exception => e
+      Rails.logger.debug e
+      @response = e
     end
     redirect_to scraper_definitions_path, notice: 'Scraper launched'
   end
