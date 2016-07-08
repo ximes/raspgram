@@ -30,6 +30,6 @@ every :thursday, at: '19pm' do
    runner "Tricks::RefuseTrick::Scheduler.new"
 end
 
-every 1.hour do
+every :hour do
    runner "Scraper::Definition.launch_scheduled"
 end
