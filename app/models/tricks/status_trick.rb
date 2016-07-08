@@ -9,11 +9,21 @@ module Tricks::StatusTrick
 	module CallbackQuery
 		def self.init(context)
 	        if context.message.data == 'status'
-				str = Rails.application.secrets['temperature_check_command']
+				begin 
+					str = Rails.application.secrets['temperature_check_command']
+					temp, stdeerr, status = Open3.capture3(str)
+				rescue
+				end
 
-				temp, stdeerr, status = Open3.capture3(str)
+				begin 	          	
+	          		str = Rails.application.secrets['free_space_check_command']
+					space, stdeerr, status = Open3.capture3(str)
+				rescue
+				end
 
-	          	context.send_message(text: "All Ok. #{temp}.", chat_id: context.message.message.chat.id)
+	          	context.send_message(text: "All Ok. 
+	          		#{temp.capitalize}
+	          		Free space: #{space}", chat_id: context.message.message.chat.id)
 	        end
   		end
 	end
