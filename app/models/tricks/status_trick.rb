@@ -1,3 +1,5 @@
+require 'open3'
+
 module Tricks::StatusTrick
 	module Definition
 		def self.definition
@@ -7,7 +9,11 @@ module Tricks::StatusTrick
 	module CallbackQuery
 		def self.init(context)
 	        if context.message.data == 'status'
-	          context.send_message(text: "All Ok", chat_id: context.message.message.chat.id)
+				str = Rails.application.secrets['temperature_check_command']
+
+				temp, stdeerr, status = Open3.capture3(str)
+
+	          	context.send_message(text: "All Ok. #{temp}.", chat_id: context.message.message.chat.id)
 	        end
   		end
 	end
