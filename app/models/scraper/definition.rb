@@ -13,8 +13,10 @@ class Scraper::Definition < ActiveRecord::Base
 
 	def self.init
 		Capybara.register_driver :poltergeist do |app|
-			Capybara::Poltergeist::Driver.new(app, :js_errors => false)
+			driver = Capybara::Poltergeist::Driver.new(app, :js_errors => false, :debug => true, :phantomjs_options => ['--load-images=no', '--web-security=true'])
 		end
+	  	
+
 		Capybara.run_server = false
 		Capybara.current_driver = :poltergeist
 		Capybara.javascript_driver = :poltergeist
@@ -33,7 +35,9 @@ class Scraper::Definition < ActiveRecord::Base
 				eval(rule.action_code, binding) if rule.action_code
 			end
 		rescue Exception => e
-			Rails.logger.debug e
+			
+			Rails.logger.debug e.inspect
+			Rails.logger.debug e.try(:message).inspect
 			@response = e
 		end
 	end
