@@ -13,7 +13,7 @@ class Scraper::Definition < ActiveRecord::Base
 
 	def self.init
 		Capybara.register_driver :poltergeist do |app|
-			driver = Capybara::Poltergeist::Driver.new(app, :js_errors => false, :debug => true, :phantomjs_options => ['--load-images=no', '--web-security=true'])
+			driver = Capybara::Poltergeist::Driver.new(app, :js_errors => false, :debug => false, :phantomjs_options => ['--load-images=no', '--web-security=true'])
 		end
 	  	
 

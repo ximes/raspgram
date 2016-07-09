@@ -21,9 +21,7 @@ module Tricks::StatusTrick
 				rescue
 				end
 
-	          	context.send_message(text: "All Ok. 
-	          		#{temp.capitalize}
-	          		Free space: #{space}", chat_id: context.message.message.chat.id)
+	          	context.send_message(text: "All Ok.\r\n#{temp.capitalize}Free space: #{space}", chat_id: context.message.message.chat.id)
 	        end
   		end
 	end
