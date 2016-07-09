@@ -10,17 +10,13 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  *= require css/bootstrap.min.css
+ *= require css/progressbar/bootstrap-progressbar-3.3.4.min.css
  *= require fonts/css/font-awesome.min.css
- *= require css/animate.min.css
- *= require css/custom.css
- *= require css/maps/jquery-jvectormap-2.0.3.css
- *= require css/icheck/flat/green.css
- *= require css/floatexamples.css
- *= require css/normalize.css
  *= require css/nprogress.css
- *= require css/ion.rangeSlider.css
- *= require css/ion.rangeSlider.skinFlat.css
+ *= require css/icheck/flat/green.css
+ *= require css/jqvmap/jqvmap.min.css
+ *= require css/switchery/switchery.min.css
+ *= require css/custom.css
+ *= require_self
  */

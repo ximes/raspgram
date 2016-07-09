@@ -1,6 +1,8 @@
 <%- model_class = RefuseAddress -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
-                                   :default => "New #{model_class.model_name.human}") %></h1>
+<div class="page-title">
+	<div class="title_left">
+		<h3><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}") %></h3>
+	</div>
 </div>
+<div class="clearfix"></div>
 <%= render :partial => 'form' %>

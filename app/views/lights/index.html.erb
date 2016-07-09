@@ -1,11 +1,22 @@
 <% if !@light_client %>
+	<div class="page-title">
+		<div class="title_left">
+			<h3>Lights</h3>
+		</div>
+	</div>
+	<div class="clearfix"></div>
 	<%= form_for :light_client do |f| %>
 		<p>Hue Bridge not set up yet. Please press the button on the Hub and try again within 30 seconds.</p>
 		<%= f.submit 'Connect' %>
 	<% end %>
 <% end %>
 <% if @light_client %>
-	<h3>Available lights:</h3>
+	<div class="page-title">
+		<div class="title_left">
+			<h3>Available lights:</h3>
+		</div>
+	</div>
+	<div class="clearfix"></div>
 	<ul>
 	<% @light_client.lights.each do |light| %>
 		<li><%= light.name %></li>

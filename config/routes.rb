@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resource :updates, only: [:create], as: :api, path: 'api'
 
   scope :manage do
-    get "/", to: "dashboard#index"
+    get "/", to: "dashboard#index", as: 'manage_root'
     resources :users
     resources :refuse_addresses
     resources :lights, only: [:index, :create]

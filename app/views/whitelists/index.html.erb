@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
+<div class="page-title">
+  <div class="title_left">
+    <h3>Listing Whitelists</h3>
+  </div>
+</div>
+<div class="clearfix"></div>
 
-<h1>Listing Whitelists</h1>
-
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -20,7 +24,6 @@
         <td><%= whitelist.user_id %></td>
         <td><%= whitelist.active %></td>
         <td><%= whitelist.phone_no %></td>
-        <td><%= link_to 'Show', whitelist %></td>
         <td><%= link_to 'Edit', edit_whitelist_path(whitelist) %></td>
         <td><%= link_to 'Destroy', whitelist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -1,7 +1,10 @@
 <%- model_class = Scraper::Definition -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<div class="page-title">
+  <div class="title_left">
+    <h3><%=t '.title', :default => model_class.model_name.human.pluralize %></h3>
+  </div>
 </div>
+<div class="clearfix"></div>
 <table class="table table-striped">
   <thead>
     <tr>

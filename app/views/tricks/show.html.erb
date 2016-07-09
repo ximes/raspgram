@@ -1,7 +1,10 @@
 <%- model_class = Trick -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+<div class="page-title">
+  <div class="title_left">
+    <h3><%=t '.title', :default => model_class.model_name.human %></h3>
+  </div>
 </div>
+<div class="clearfix"></div>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
