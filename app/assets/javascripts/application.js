@@ -27,6 +27,7 @@
 //= require js/flot/jquery.flot.orderBars.js
 //= require js/flot/jquery.flot.time.min.js
 //= require js/flot/date.js
+//= require js/tinycolor/tinycolor.js
 //= require js/flot/jquery.flot.spline.js
 //= require js/flot/jquery.flot.stack.js
 //= require js/flot/curvedLines.js
@@ -36,12 +37,15 @@
 //= require js/jqvmap/examples/js/jquery.vmap.sampledata.js
 //= require js/moment/moment.min.js
 //= require js/datepicker/daterangepicker.js
+//= require js/ion_range/ion.rangeSlider.min.js
+//= require js/knob/jquery.knob.min.js
+//= require js/colorpicker/bootstrap-colorpicker.min.js
 //= require js/select/select2.full.js
 //= require js/maps/jquery-jvectormap-2.0.3.min.js
 //= require js/maps/gdp-data.js
 //= require js/maps/jquery-jvectormap-world-mill-en.js
 //= require js/maps/jquery-jvectormap-us-aea-en.js
 //= require js/switchery/switchery.min.js
-//= require js/custom.js
+//= require custom.js
 //= stub homepage.js
 //= require_tree .

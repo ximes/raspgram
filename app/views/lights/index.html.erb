@@ -17,9 +17,99 @@
 		</div>
 	</div>
 	<div class="clearfix"></div>
-	<ul>
-	<% @light_client.lights.each do |light| %>
-		<li><%= light.name %></li>
+	<% @light_client.lights.in_groups_of(2).each do |lights| %>
+	<div class="row">
+		<% lights.each do |light| %>
+		<div class="col-xs-12 col-sm-6">
+			<div class="x_panel">
+				<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, data: {id: light.id } do |f| %>
+					<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+					<div class="x_title">
+						<h2>
+							<%= light.id %>. <%= light.name %> 
+						</h2>
+					<%
+=begin%>
+light.hue = 46920
+light.color_temperature = 100
+transition_time = 10*5 # Hue transition times are in 1/10 of a second.
+light.set_state({:color_temperature => 400}, transition_time)
+	Red => 0, yellow => 18000, green => 25500, cyan => 36207, blue => 46920, pink => 56100
+<%
+=end 
+					%>
+
+						<ul class="nav navbar-right panel_toolbox">
+						  <li>
+						  <%= f.input :on, label: false, input_html: {type: :checkbox, class: "js-switch", value: (light.color_temperature.to_i / 4), checked: light.on? ? "checked" : nil, disabled: light.reachable? ? nil : "", data: {'switchery' => true} } %>
+						  </li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						<div class="col-xs-12 col-sm-6">
+						  <%= f.input :color_temperature, input_html: {class: "range range_color_temperature", value: light.color_temperature.to_i, data: {disable: !light.reachable?, from: light.color_temperature.to_i, min: 0, max: 400}}, required: false %>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+						  <%= f.input :brightness, input_html: {class: "range range_brightness", value: light.brightness.to_i, data: {disable: !light.reachable?, from: light.brightness.to_i, min: 0, max: 255}}, required: false %>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+						  <%= f.input :saturation, input_html: {class: "range range_saturation", value: light.saturation.to_i, data: {disable: !light.reachable?, from: light.saturation.to_i}}, required: false %>
+						</div>
+						<div class="col-xs-12 col-sm-12">
+							<%= f.label :hue, label: 'Color', required: false %>
+							<div class="well hue-well"></div>
+						  	<%= f.input :hue, as: :hidden, input_html: {class: "range range_hue", value: light.hue.to_i} %>
+						  
+						  <%= f.button_tag 'Red!', name: 'light[hue]', value: 65000, class: 'btn btn-default' %>
+						  <%= f.button_tag 'Green!', name: 'light[hue]', value: 25500 , class: 'btn btn-default' %>
+						  <%= f.button_tag 'Cyan!', name: 'light[hue]', value: 36207 , class: 'btn btn-default' %>
+						  <%= f.button_tag 'Blue!', name: 'light[hue]', value: 46920 , class: 'btn btn-default' %>
+						  <%= f.button_tag 'Pink!', name: 'light[hue]', value: 56100 , class: 'btn btn-default' %>
+						  <%= f.button_tag 'Yellow!', name: 'light[hue]', value: 18000 , class: 'btn btn-default' %>
+
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<% end %>
+		</div>
 	<% end %>
-	</ul>
+<% end %>
+<%= javascript_tag do %>
+	$(document).on('ready page:change', function() {  
+		var gap = 15000;
+		setTimeout(updateLights, gap);
+		function updateLights () {
+			$.ajax({
+				url: "<%= lights_path(format: :json) %>",
+				success: function(response) {
+				     if (response){
+				     	$.each(response, function(k,v){
+				     		var form = $('.simple_form.light[data-id="'+v.id+'"]');
+				     		
+				     		var slider = form.find(".range_color_temperature").data("ionRangeSlider");
+				     		slider.update({ from: v.color_temperature})
+
+				     		var slider = form.find(".range_brightness").data("ionRangeSlider");
+				     		slider.update({ from: v.brightness})
+
+				     		var slider = form.find(".range_saturation").data("ionRangeSlider");
+				     		slider.update({ from: v.saturation})
+				     		
+				     		form.find("input[name='light[hue]']").val(v.hue);
+
+				     	})
+				     }
+				     
+				},
+				error: function() {
+				     
+				}
+			});
+
+			setTimeout(updateLights, gap);
+		}
+	});
 <% end %>

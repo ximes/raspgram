@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get "/", to: "dashboard#index", as: 'manage_root'
     resources :users
     resources :refuse_addresses
-    resources :lights, only: [:index, :create]
+    resources :lights, only: [:index, :create, :update]
     resources :whitelists
     resources :scraper_definitions, path: :scrapers do
       put :launch, to: "scraper_definitions#launch"

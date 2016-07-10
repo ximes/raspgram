@@ -12,9 +12,13 @@
  *
  *= require css/bootstrap.min.css
  *= require css/progressbar/bootstrap-progressbar-3.3.4.min.css
+ *= require css/colorpicker/bootstrap-colorpicker.min.css
  *= require fonts/css/font-awesome.min.css
  *= require css/nprogress.css
  *= require css/icheck/flat/green.css
+ *= require css/normalize.css
+ *= require css/ion.rangeSlider.css
+ *= require css/ion.rangeSlider.skinFlat.css
  *= require css/jqvmap/jqvmap.min.css
  *= require css/switchery/switchery.min.css
  *= require css/custom.css
