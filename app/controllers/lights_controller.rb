@@ -1,19 +1,17 @@
 class LightsController < ApplicationController
-	before_action :authenticate_user!
+  before_filter :set_light_client
 
-  def index
-    check_connection
+  skip_before_action :verify_authenticity_token, only: [:update]
+
+  def index    
   end
 
   def create
-      unless check_connection
-        Light.setup_connection
-      end
       redirect_to lights_path
   end
 
   def update
-    if check_connection
+    if @light_client
 
       light = @light_client.lights.select{|l| l.id == light_update_params[:id]}.first
 
@@ -36,14 +34,11 @@ class LightsController < ApplicationController
     render :nothing => true
   end
 
-  private
-  def check_connection
-    begin 
-      @light_client = Hue::Client.new
-    rescue
-      false
-    end
+  def set_light_client
+    @light_client = Light.check_connection
   end
+
+  private
 
   def light_update_params
     params.require(:light)

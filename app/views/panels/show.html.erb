@@ -1,0 +1,122 @@
+<% if !@light_client %>
+	<div class="page-title">
+		<div class="title_left">
+			<h3>Lights</h3>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<%= form_for :light_client do |f| %>
+		<p>Hue Bridge not set up yet. Please press the button on the Hub and try again within 30 seconds.</p>
+		<%= f.submit 'Connect' %>
+	<% end %>
+<% end %>
+<% if @light_client %>
+	<% @light_client.lights.in_groups_of(2).each do |lights| %>
+	<div class="row">
+		<% lights.each do |light| %>
+		<div class="col-xs-6">
+			<div class="x_panel">
+				<%= simple_form_for :light,	 url: light_path(light.id), method: :patch, remote: true, data: {id: light.id } do |f| %>
+					<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+					<%= light.name %> 
+					<%= f.input :on, label: false, wrapper_html: {class: 'pull-right'}, input_html: {type: :checkbox, class: "js-switch", value: (light.color_temperature.to_i / 4), checked: light.on? ? "checked" : nil, disabled: light.reachable? ? nil : "", data: {'switchery' => true} } %>
+				<% end %>
+
+				<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+					<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+					<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+				  <%= f.button_tag 'Red', name: 'light[hue]', value: 65000, class: 'btn btn-default btn-sm' %>
+				<% end %>
+				<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+					<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+					<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+				  <%= f.button_tag 'Green', name: 'light[hue]', value: 25500 , class: 'btn btn-default btn-sm' %>
+				<% end %>
+				<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+					<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+					<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+				  <%= f.button_tag 'Cyan', name: 'light[hue]', value: 36207 , class: 'btn btn-default btn-sm' %>
+				<% end %>
+				<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+					<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+					<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+				  <%= f.button_tag 'Blue', name: 'light[hue]', value: 46920 , class: 'btn btn-default btn-sm' %>
+				<% end %>
+				<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+					<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+					<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+				  <%= f.button_tag 'Pink', name: 'light[hue]', value: 56100 , class: 'btn btn-default btn-sm' %>
+			  	<% end %>
+				<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+					<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+					<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+				  <%= f.button_tag 'Yellow', name: 'light[hue]', value: 18000 , class: 'btn btn-default btn-sm' %>
+			  	<% end %>
+				<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+					<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+					<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+				  <%= f.button_tag 'White', name: 'light[hue]', value: 34522 , class: 'btn btn-default btn-sm' %>
+			  	<% end %>
+				<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+					<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+					<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+					<%= f.input :hue, as: :hidden, input_html: {value: light.hue.to_i} %>
+				  <%= f.button_tag 'Bright', name: 'light[brightness]', value: 255, class: 'light_brightness btn btn-default btn-sm' %>
+				<% end %>
+
+			  	<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+			  		<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+			  		<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+			  		<%= f.input :hue, as: :hidden, input_html: {value: light.hue.to_i} %>
+				  <%= f.button_tag 'Dim', name: 'light[brightness]', value: 10 , class: 'light_brightness btn btn-default btn-sm' %>
+				<% end %>
+
+			  	<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+			  		<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+			  		<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+			  		<%= f.input :hue, as: :hidden, input_html: {value: light.hue.to_i} %>
+			  		<%= f.input :brightness, as: :hidden, input_html: {class: 'light_brightness', value: light.brightness.to_i} %>
+				  <%= f.button_tag 'Cold', name: 'light[color_temperature]', value: 0 , class: 'light_color_temperature btn btn-default btn-sm' %>
+			  	<% end %>
+
+			  	<%= simple_form_for :light,	 url: light_path(light), method: :patch, remote: true, html: {class: 'pull-left'}, data: {id: light.id } do |f| %>
+			  		<%= f.input :id, as: :hidden, input_html: {value: light.id} %>
+			  		<%= f.input :on, as: :hidden, input_html: {value: 100} %>
+			  		<%= f.input :hue, as: :hidden, input_html: {value: light.hue.to_i} %>
+			  		<%= f.input :brightness, as: :hidden, input_html: {class: 'light_brightness', value: light.brightness.to_i} %>
+				  <%= f.button_tag 'Warm', name: 'light[color_temperature]', value: 400 , class: 'light_color_temperature btn btn-default btn-sm' %>
+			  	<% end %>
+			</div>
+		</div>
+		<% end %>
+		</div>
+	<% end %>
+<% end %>
+<%= javascript_tag do %>
+	$(document).on('ready page:change', function() {  
+		var gap = 5000;
+		setTimeout(updateLights, gap);
+		function updateLights () {
+			$.ajax({
+				url: "<%= lights_path(format: :json) %>",
+				success: function(response) {
+				     if (response){
+				     	$.each(response, function(k,v){
+				     		var form = $('.simple_form.light[data-id="'+v.id+'"]');
+				     		form.find(".light_on").prop('checked', true);
+				     		form.find(".light_color_temperature").val(v.color_temperature);
+				     		form.find(".light_hue").val(v.hue);
+				     		form.find(".light_brightness").val(v.brightness);
+				     	})
+				     }
+				     
+				},
+				error: function() {
+				     
+				}
+			});
+
+			setTimeout(updateLights, gap);
+		}
+	});
+<% end %>

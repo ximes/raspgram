@@ -3,9 +3,29 @@ class Light < Trick
 	include ActiveModel::Conversion
 	extend ActiveModel::Naming
 
+	@@client = Light.new
+
+ 	private_class_method :new
+
+ 	def initialize
+ 		Light.setup_connection
+ 	end
+	def self.client
+		return @@client
+	end
+
 	def self.setup_connection
 		%x( echo 'hue all state')
 	end
+	
+	def self.check_connection
+	    begin 
+	      Hue::Client.new
+	    rescue
+	      false
+	    end
+	end
+
 	def self.hex_to_hue(value)
 
   		parts = (value.match /^(\#?)(..?)(..?)(..?)/ )[2..4]

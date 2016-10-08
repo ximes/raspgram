@@ -1,0 +1,26 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require css/bootstrap.min.css
+ *= require css/progressbar/bootstrap-progressbar-3.3.4.min.css
+ *= require css/colorpicker/bootstrap-colorpicker.min.css
+ *= require fonts/scss/font-awesome
+ *= require css/nprogress.css
+ *= require css/icheck/flat/green.css
+ *= require css/normalize.css
+ *= require css/ion.rangeSlider.css
+ *= require css/ion.rangeSlider.skinFlat.css
+ *= require css/jqvmap/jqvmap.min.css
+ *= require css/switchery/switchery.min.css
+ *= require css/custom.css
+ *= require_self
+ */

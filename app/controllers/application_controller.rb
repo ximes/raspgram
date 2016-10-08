@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
+  before_filter :access_by_token
+    
+  ACCESS_TOKEN = 'kugayashi'
+
   protected
 
   def layout_by_resource
@@ -12,6 +16,12 @@ class ApplicationController < ActionController::Base
       "registration"
     else
       "application"
+    end
+  end
+
+  def access_by_token
+    unless params[:token] and params[:token] == ACCESS_TOKEN
+      #authenticate_user!
     end
   end
 end
