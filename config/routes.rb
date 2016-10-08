@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, path: '/manage/users'
 
   root 'homepage#index'
-  resource :updates, only: [:create], as: :api, path: 'api'
+  #resource :updates, only: [:create], as: :api, path: 'api'
 
   scope :manage do
     get "/", to: "dashboard#index", as: 'manage_root'
@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       put :launch, to: "scraper_definitions#launch"
     end
     resources :tricks, except: [:destroy, :create, :new]
+  end
+
+  resource :panel do
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

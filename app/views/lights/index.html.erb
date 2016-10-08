@@ -41,20 +41,20 @@ light.set_state({:color_temperature => 400}, transition_time)
 
 						<ul class="nav navbar-right panel_toolbox">
 						  <li>
-						  <%= f.input :on, label: false, input_html: {type: :checkbox, class: "js-switch", value: (light.color_temperature.to_i / 4), checked: light.on? ? "checked" : nil, disabled: light.reachable? ? nil : "", data: {'switchery' => true} } %>
+						  <%= f.input :on, label: false, input_html: {type: :checkbox, class: "js-switch", value: (light.color_temperature.to_i / 4), checked: light.on? ? "checked" : nil, data: {'switchery' => true} } %>
 						  </li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
 						<div class="col-xs-12 col-sm-6">
-						  <%= f.input :color_temperature, input_html: {class: "range range_color_temperature", value: light.color_temperature.to_i, data: {disable: !light.reachable?, from: light.color_temperature.to_i, min: 0, max: 400}}, required: false %>
+						  <%= f.input :color_temperature, input_html: {class: "range range_color_temperature", value: light.color_temperature.to_i, data: { from: light.color_temperature.to_i, min: 0, max: 400}}, required: false %>
 						</div>
 						<div class="col-xs-12 col-sm-6">
-						  <%= f.input :brightness, input_html: {class: "range range_brightness", value: light.brightness.to_i, data: {disable: !light.reachable?, from: light.brightness.to_i, min: 0, max: 255}}, required: false %>
+						  <%= f.input :brightness, input_html: {class: "range range_brightness", value: light.brightness.to_i, data: { from: light.brightness.to_i, min: 0, max: 255}}, required: false %>
 						</div>
 						<div class="col-xs-12 col-sm-6">
-						  <%= f.input :saturation, input_html: {class: "range range_saturation", value: light.saturation.to_i, data: {disable: !light.reachable?, from: light.saturation.to_i}}, required: false %>
+						  <%= f.input :saturation, input_html: {class: "range range_saturation", value: light.saturation.to_i, data: { from: light.saturation.to_i}}, required: false %>
 						</div>
 						<div class="col-xs-12 col-sm-12">
 							<%= f.label :hue, label: 'Color', required: false %>

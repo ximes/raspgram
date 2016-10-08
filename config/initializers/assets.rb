@@ -9,4 +9,4 @@ Rails.application.config.assets.paths <<  Rails.root.join("vendor", "assets", "c
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( homepage.css homepage.js )
+Rails.application.config.assets.precompile += %w( homepage.css homepage.js panel.css panel.js )
